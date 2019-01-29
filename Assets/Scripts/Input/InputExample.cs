@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using CreamyCheaks.Input;
 
@@ -27,10 +28,10 @@ public class InputExample : MonoBehaviour
 	    }
 	}
 
-    IEnumerator StartChange()
+    IEnumerator StartChange(string b)
     {
         isChanging = true;
-        yield return InputManager.UpdateInput("Temp", save: true);
+        yield return InputManager.UpdateInput(b, save: true);
         isChanging = false;
     }
 
@@ -46,9 +47,19 @@ public class InputExample : MonoBehaviour
             GUILayout.Label("H: " + h);
             GUILayout.Label("T: " + t);
 
-            if (GUILayout.Button("Update \"Temp\""))
+            if (GUILayout.Button("Update \"V\""))
             {
-                StartCoroutine(StartChange());
+                StartCoroutine(StartChange("Vertical"));
+            }
+
+            if (GUILayout.Button("Update \"H\""))
+            {
+                StartCoroutine(StartChange("Horizontal"));
+            }
+
+            if (GUILayout.Button("Update \"T\""))
+            {
+                StartCoroutine(StartChange("Temp"));
             }
         }
     }
