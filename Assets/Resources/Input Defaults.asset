@@ -15,15 +15,20 @@ MonoBehaviour:
   - Name: Vertical
     PositiveKey: 119
     NegativeKey: 115
+    Axis: 
+    ButtonDirection: 0
   - Name: Horizontal
     PositiveKey: 100
     NegativeKey: 97
+    Axis: 
+    ButtonDirection: 0
   - Name: Jump
     PositiveKey: 32
     NegativeKey: 0
-  - Name: Temp
-    PositiveKey: 32
+    Axis: 
+    ButtonDirection: 0
+  - Name: Interact
+    PositiveKey: 102
     NegativeKey: 0
-  - Name: OLD
-    PositiveKey: 32
-    NegativeKey: 0
+    Axis: 
+    ButtonDirection: 0
