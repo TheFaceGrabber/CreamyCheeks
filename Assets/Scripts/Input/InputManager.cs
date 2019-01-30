@@ -15,9 +15,9 @@ namespace CreamyCheaks.Input
                                                  Path.DirectorySeparatorChar + "HorrorGame" +
                                                  Path.DirectorySeparatorChar + "Input.xml";
 
-        static List<Button> _inputs = new List<Button>(); //All inputs current loaded
+        public static List<Button> Inputs { get; private set; } //All inputs current loaded
 
-        private static bool _isInitialised = false; //Has the Input Manager been initialised?
+        public static bool IsInitialised { get; private set;} //Has the Input Manager been initialised?
 
         #region Util Functions
 
@@ -30,28 +30,36 @@ namespace CreamyCheaks.Input
         {
             try
             {
-                _inputs = Resources.Load<InputDefaults>("Input Defaults").Inputs; //Load "Input Defaults" file from the Resources folder
+                Inputs = Resources.Load<InputDefaults>("Input Defaults").Inputs; //Load "Input Defaults" file from the Resources folder
                 
                 //Load and values from the save file and then merge any new inputs into the currently loaded file
                 //(This is why you would want to auto save on init)
                 var temp = DoLoad(); //Load the save file
-                
-                for (int i = 0; i < temp.Count; i++)
+
+                if (temp != null)
                 {
-                    var input = _inputs.FindIndex(x => x.Name == temp[i].Name);
-                    if (input != -1)
+                    for (int i = 0; i < temp.Count; i++)
                     {
-                        _inputs[input].PositiveKey = temp[i].PositiveKey;
-                        _inputs[input].NegativeKey = temp[i].NegativeKey;
-                        _inputs[input].Axis = temp[i].Axis;
-                        _inputs[input].ButtonDirection = temp[i].ButtonDirection;
+                        var input = Inputs.FindIndex(x => x.Name == temp[i].Name);
+                        if (input != -1)
+                        {
+                            Inputs[input].PositiveKey = temp[i].PositiveKey;
+                            Inputs[input].NegativeKey = temp[i].NegativeKey;
+                            Inputs[input].Axis = temp[i].Axis;
+                            Inputs[input].ButtonDirection = temp[i].ButtonDirection;
+
+                            Inputs[input].AlternativePositiveKey = temp[i].AlternativePositiveKey;
+                            Inputs[input].AlternativeNegativeKey = temp[i].AlternativeNegativeKey;
+                            Inputs[input].AlternativeAxis = temp[i].AlternativeAxis;
+                            Inputs[input].AlternativeButtonDirection = temp[i].AlternativeButtonDirection;
+                        }
                     }
                 }
 
                 if (saveToFile) //Save the updated inputs (if requested as a parameter)
                     DoSave();
 
-                _isInitialised = true; //Finally tell the program that the Input Manager has been initialised
+                IsInitialised = true; //Finally tell the program that the Input Manager has been initialised
 
                 return true;
             }
@@ -72,7 +80,7 @@ namespace CreamyCheaks.Input
         {
             try
             {
-                if (Directory.Exists(Path.GetDirectoryName(SAVEPATH))) //Check if the save path exists on the Hard Drive
+                if (Directory.Exists(Path.GetDirectoryName(SAVEPATH)) && File.Exists(SAVEPATH)) //Check if the save path exists on the Hard Drive
                 {
                     using (TextReader reader = new StreamReader(SAVEPATH)) //Create a text reader than will be disposed of as soon as we leave its block of code
                     {
@@ -86,7 +94,7 @@ namespace CreamyCheaks.Input
             }
             catch (Exception ex) //Catch and log any errors
             {
-                Debug.LogError("There was an error when saving the inputs: \n" + ex.Message + " - " + ex.StackTrace);
+                Debug.LogError("There was an error when loading the inputs: \n" + ex.Message + " - " + ex.StackTrace);
             }
 
             return null;
@@ -108,7 +116,7 @@ namespace CreamyCheaks.Input
                 using (TextWriter writer = new StreamWriter(SAVEPATH)) //Create a text reader than will be disposed of as soon as we leave its block of code
                 {
                     XmlSerializer x = new XmlSerializer(typeof(List<Button>));
-                    x.Serialize(writer, _inputs); //Serialize and save the Inputs list to the save file (into XML format)
+                    x.Serialize(writer, Inputs); //Serialize and save the Inputs list to the save file (into XML format)
                 }
 
                 return true;
@@ -132,14 +140,14 @@ namespace CreamyCheaks.Input
         /// <returns>Return whether or not the button is held down</returns>
         public static bool GetButton(string button)
         {
-            if (!_isInitialised) //Make sure that we have been init before running this code
+            if (!IsInitialised) //Make sure that we have been init before running this code
             {
                 Debug.LogError(
                     "Input Manager has not not initialised, you must call InputManager.Initialise() before using an functionallity");
                 return false;
             }
 
-            var b = _inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
+            var b = Inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
 
             if (b == null) //If no button exists, exit out of the function
             {
@@ -149,16 +157,16 @@ namespace CreamyCheaks.Input
 
             if (string.IsNullOrEmpty(b.Axis)) //Is the axis value assigned?
             {
-                return UnityEngine.Input.GetKey(b.PositiveKey); //Get key of keycode
+                return UnityEngine.Input.GetKey(b.PositiveKey) || UnityEngine.Input.GetKey(b.AlternativePositiveKey); //Get key of keycode
             }
 
             if (b.ButtonDirection == PositiveNegative.Positive) //Does the button return a positive value from the axis?
             {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0;
+                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
             }
             else
             {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0;
+                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) < 0;
             }
         }
 
@@ -169,14 +177,14 @@ namespace CreamyCheaks.Input
         /// <returns>Return whether or not the button was pressed</returns>
         public static bool GetButtonDown(string button)
         {
-            if (!_isInitialised) //Make sure that we have been init before running this code
+            if (!IsInitialised) //Make sure that we have been init before running this code
             {
                 Debug.LogError(
                     "Input Manager has not not initialised, you must call InputManager.Initialise() before using an functionallity");
                 return false;
             }
 
-            var b = _inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
+            var b = Inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
 
             if (b == null) //If no button exists, exit out of the function
             {
@@ -185,15 +193,15 @@ namespace CreamyCheaks.Input
             }
 
             if (string.IsNullOrEmpty(b.Axis)) //Is the axis value assigned?
-                return UnityEngine.Input.GetKeyDown(b.PositiveKey); //Get key down of keycode
+                return UnityEngine.Input.GetKeyDown(b.PositiveKey) || UnityEngine.Input.GetKeyDown(b.AlternativePositiveKey); //Get key down of keycode
 
             if (b.ButtonDirection == PositiveNegative.Positive) //Does the button return a positive value from the axis?
             {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0;
+                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
             }
             else
             {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0;
+                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) < 0;
             }
         }
 
@@ -204,14 +212,14 @@ namespace CreamyCheaks.Input
         /// <returns>Return whether or not the button was released</returns>
         public static bool GetButtonUp(string button)
         {
-            if (!_isInitialised) //Make sure that we have been init before running this code
+            if (!IsInitialised) //Make sure that we have been init before running this code
             {
                 Debug.LogError(
                     "Input Manager has not not initialised, you must call InputManager.Initialise() before using an functionallity");
                 return false;
             }
 
-            var b = _inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
+            var b = Inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
 
             if (b == null) //If no button exists, exit out of the function
             {
@@ -220,15 +228,15 @@ namespace CreamyCheaks.Input
             }
 
             if (string.IsNullOrEmpty(b.Axis)) //Is the axis value assigned?
-                return UnityEngine.Input.GetKeyUp(b.PositiveKey); //Get key up of keycode
+                return UnityEngine.Input.GetKeyUp(b.PositiveKey) || UnityEngine.Input.GetKeyUp(b.AlternativePositiveKey); ; //Get key up of keycode
 
             if (b.ButtonDirection == PositiveNegative.Positive) //Does the button return a positive value from the axis?
             {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0;
+                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
             }
             else
             {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0;
+                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
             }
         }
 
@@ -239,14 +247,14 @@ namespace CreamyCheaks.Input
         /// <returns>Returns the direction that the axis is being held</returns>
         public static float GetAxis(string axis)
         {
-            if (!_isInitialised) //Make sure that we have been init before running this code
+            if (!IsInitialised) //Make sure that we have been init before running this code
             {
                 Debug.LogError(
                     "Input Manager has not not initialised, you must call InputManager.Initialise() before using an functionallity");
                 return 0;
             }
 
-            var b = _inputs.SingleOrDefault(x => x.Name == axis); //Find the button with requested name
+            var b = Inputs.SingleOrDefault(x => x.Name == axis); //Find the button with requested name
 
             if (b == null) //If no button exists, exit out of the function
             {
@@ -256,15 +264,22 @@ namespace CreamyCheaks.Input
 
             if (string.IsNullOrEmpty(b.Axis)) //Is the axis value assigned?
             {
-                if (UnityEngine.Input.GetKey(b.PositiveKey)) //Return positive value if positive key is held
+                if (UnityEngine.Input.GetKey(b.PositiveKey) || UnityEngine.Input.GetKey(b.AlternativePositiveKey)) //Return positive value if positive key is held
                     return 1;
 
-                if (UnityEngine.Input.GetKey(b.NegativeKey)) //Return negative value if negative key is held
+                if (UnityEngine.Input.GetKey(b.NegativeKey) || UnityEngine.Input.GetKey(b.AlternativeNegativeKey)) //Return negative value if negative key is held
                     return -1;
+
+                if(!string.IsNullOrEmpty(b.AlternativeAxis))
+                    return UnityEngine.Input.GetAxisRaw(b.AlternativeAxis);
             }
             else
             {
-                return UnityEngine.Input.GetAxisRaw(b.Axis); //Use Unity's built in Input for joystick/gamepad axis
+                float r = UnityEngine.Input.GetAxisRaw(b.Axis);
+                if (Math.Abs(r) < 0.01f)
+                    return UnityEngine.Input.GetAxisRaw(b.AlternativeAxis); //Use Unity's built in Input for joystick/gamepad axis
+                else
+                    return r;
             }
 
             return 0;
@@ -280,10 +295,11 @@ namespace CreamyCheaks.Input
         /// <param name="button">The button you wish to update</param>
         /// <param name="type">The direction of the input that you want to update (Positive or Negative)</param>
         /// <param name="save">Whether or not you want to save the new key binding (recommended)</param>
+        /// <param name="isAlternative">Whether or not this will be affecting the alternative key binding or just the normal key binding</param>
         /// <returns></returns>
-        public static IEnumerator UpdateInput(string button, PositiveNegative type = PositiveNegative.Positive, bool save = false)
+        public static IEnumerator UpdateInput(string button, bool isAlternative = false, PositiveNegative type = PositiveNegative.Positive, bool save = false)
         {
-            var b = _inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
+            var b = Inputs.SingleOrDefault(x => x.Name == button); //Find the button with requested name
 
             if (b != null) //If no button exists, exit out of the function
             {
@@ -296,28 +312,51 @@ namespace CreamyCheaks.Input
                 if (isButton) //Was a button and not an axis detected?
                 {
                     var code = (KeyCode) Enum.Parse(typeof(KeyCode), input); //Convert from string to KeyCode enum
-
-                    b.Axis = ""; //Clear button axis
+                    
+                    //Clear button axis
+                    if (isAlternative)
+                        b.AlternativeAxis = "";
+                    else
+                        b.Axis = "";
 
                     switch (type) //Update button values
                     {
                         case PositiveNegative.Positive:
-                            b.PositiveKey = code;
+                            if(isAlternative)
+                                b.AlternativePositiveKey = code;
+                            else
+                                b.PositiveKey = code;
                             break;
                         case PositiveNegative.Negative:
-                            b.NegativeKey = code;
+                            if (isAlternative)
+                                b.NegativeKey = code;
+                            else
+                                b.NegativeKey = code;
                             break;
                     }
                 }
                 else
                 {
-                    //Clear button values
-                    b.PositiveKey = KeyCode.None;
-                    b.NegativeKey = KeyCode.None;
-                    //Updated Unity axis
-                    b.Axis = input;
-                    //Set Input direction
-                    b.ButtonDirection = dir;
+                    if (isAlternative)
+                    {
+                        //Clear button values
+                        b.AlternativePositiveKey = KeyCode.None;
+                        b.AlternativeNegativeKey = KeyCode.None;
+                        //Updated Unity axis
+                        b.AlternativeAxis = input;
+                        //Set Input direction
+                        b.AlternativeButtonDirection = dir;
+                    }
+                    else
+                    {
+                        //Clear button values
+                        b.PositiveKey = KeyCode.None;
+                        b.NegativeKey = KeyCode.None;
+                        //Updated Unity axis
+                        b.Axis = input;
+                        //Set Input direction
+                        b.ButtonDirection = dir;
+                    }
                 }
 
                 if (save) //Save if requests
@@ -412,10 +451,17 @@ namespace CreamyCheaks.Input
     public class Button
     {
         public string Name;
+
         public KeyCode PositiveKey;
         public KeyCode NegativeKey;
         public string Axis;
         public PositiveNegative ButtonDirection;
+
+        public KeyCode AlternativePositiveKey;
+        public KeyCode AlternativeNegativeKey;
+        public string AlternativeAxis;
+        public PositiveNegative AlternativeButtonDirection;
+
 
         public override bool Equals(object obj)
         {
