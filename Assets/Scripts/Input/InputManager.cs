@@ -19,6 +19,8 @@ namespace CreamyCheaks.Input
 
         public static bool IsInitialised { get; private set;} //Has the Input Manager been initialised?
 
+        private static InputType lastInput;
+
         #region Util Functions
 
         /// <summary>
@@ -132,7 +134,55 @@ namespace CreamyCheaks.Input
         #endregion
 
         #region GamePlay Functions
-        
+        /// <summary>
+        /// Returns whatever type of input the user last gave (Keyboard or Gamepad)
+        /// </summary>
+        /// <returns></returns>
+        public static InputType GetLastInputType()
+        {
+            if (UnityEngine.Input.GetKey(KeyCode.Joystick1Button0) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button1) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button2) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button3) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button4) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button5) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button6) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button7) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button8) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button9) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button10) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button11) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button12) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button13) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button14) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button15) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button16) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button17) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button18) ||
+                UnityEngine.Input.GetKey(KeyCode.Joystick1Button19)||
+                UnityEngine.Input.GetAxisRaw("Left Stick X") != 0 ||
+                UnityEngine.Input.GetAxisRaw("Left Stick Y") != 0 ||
+                UnityEngine.Input.GetAxisRaw("Right Stick X") != 0 ||
+                UnityEngine.Input.GetAxisRaw("Right Stick Y") != 0 ||
+                UnityEngine.Input.GetAxisRaw("Triggers") != 0 ||
+                UnityEngine.Input.GetAxisRaw("DPad Y") != 0 ||
+                UnityEngine.Input.GetAxisRaw("DPad X") != 0)
+            {
+                lastInput = Input.InputType.Gamepad;
+                return lastInput;
+            }
+
+            if (UnityEngine.Input.anyKey||
+                UnityEngine.Input.GetAxisRaw("Mouse X") != 0||
+                UnityEngine.Input.GetAxisRaw("Mouse Y") != 0)
+            {
+                lastInput = Input.InputType.Keyboard;
+                return lastInput;
+            }
+
+            return lastInput;
+        }
+
         /// <summary>
         /// Use the same way you would use the Unity "GetButton" function
         /// </summary>
@@ -439,6 +489,11 @@ namespace CreamyCheaks.Input
         #endregion
     }
 
+    public enum InputType
+    {
+        Gamepad,
+        Keyboard
+    }
 
     /// <summary>
     /// Name: The name assigned to this button
