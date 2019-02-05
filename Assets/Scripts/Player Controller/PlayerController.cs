@@ -61,16 +61,6 @@ namespace CreamyCheaks.PlayerController
             CameraRotation();
             Movement();
             HeadBob();
-
-            if (InputManager.GetButton("Zoom In"))
-            {
-                CameraTransform.GetComponent<Camera>().fieldOfView -= 0.5f;
-            }
-
-            if (InputManager.GetButton("Zoom Out"))
-            {
-                CameraTransform.GetComponent<Camera>().fieldOfView += 0.5f;
-            }
         }
 
         void HeadBob()
