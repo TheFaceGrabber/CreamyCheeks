@@ -13,65 +13,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inputs:
   - Name: Move Forward
+    MainInputType: 0
     PositiveKey: 119
     NegativeKey: 115
     Axis: 
     ButtonDirection: 0
+    AlternativeInputType: 1
     AlternativePositiveKey: 0
     AlternativeNegativeKey: 0
     AlternativeAxis: Left Stick Y
     AlternativeButtonDirection: 0
   - Name: Move Sideways
+    MainInputType: 0
     PositiveKey: 100
     NegativeKey: 97
     Axis: 
     ButtonDirection: 0
+    AlternativeInputType: 1
     AlternativePositiveKey: 0
     AlternativeNegativeKey: 0
     AlternativeAxis: Left Stick X
     AlternativeButtonDirection: 0
   - Name: Look Vertical
+    MainInputType: 1
     PositiveKey: 0
     NegativeKey: 0
     Axis: Mouse Y
     ButtonDirection: 0
+    AlternativeInputType: 1
     AlternativePositiveKey: 0
     AlternativeNegativeKey: 0
     AlternativeAxis: Right Stick Y
     AlternativeButtonDirection: 0
   - Name: Look Horizontal
+    MainInputType: 1
     PositiveKey: 0
     NegativeKey: 0
     Axis: Mouse X
     ButtonDirection: 0
+    AlternativeInputType: 1
     AlternativePositiveKey: 0
     AlternativeNegativeKey: 0
     AlternativeAxis: Right Stick X
     AlternativeButtonDirection: 0
   - Name: Jump
+    MainInputType: 0
     PositiveKey: 32
     NegativeKey: 0
     Axis: 
     ButtonDirection: 0
+    AlternativeInputType: 0
     AlternativePositiveKey: 330
     AlternativeNegativeKey: 0
     AlternativeAxis: 
     AlternativeButtonDirection: 0
   - Name: Run
+    MainInputType: 0
     PositiveKey: 304
     NegativeKey: 0
     Axis: 
     ButtonDirection: 0
+    AlternativeInputType: 0
     AlternativePositiveKey: 338
     AlternativeNegativeKey: 0
     AlternativeAxis: 
     AlternativeButtonDirection: 0
   - Name: Interact
+    MainInputType: 0
     PositiveKey: 102
     NegativeKey: 0
     Axis: 
     ButtonDirection: 0
+    AlternativeInputType: 0
     AlternativePositiveKey: 0
     AlternativeNegativeKey: 0
     AlternativeAxis: 
     AlternativeButtonDirection: 0
+  - Name: Zoom In
+    MainInputType: 0
+    PositiveKey: 101
+    NegativeKey: 0
+    Axis: 
+    ButtonDirection: 0
+    AlternativeInputType: 1
+    AlternativePositiveKey: 0
+    AlternativeNegativeKey: 0
+    AlternativeAxis: Triggers
+    AlternativeButtonDirection: 0
+  - Name: Zoom Out
+    MainInputType: 0
+    PositiveKey: 113
+    NegativeKey: 0
+    Axis: 
+    ButtonDirection: 0
+    AlternativeInputType: 1
+    AlternativePositiveKey: 0
+    AlternativeNegativeKey: 0
+    AlternativeAxis: Triggers
+    AlternativeButtonDirection: 1

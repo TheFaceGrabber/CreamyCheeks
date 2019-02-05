@@ -205,19 +205,21 @@ namespace CreamyCheaks.Input
                 return false;
             }
 
-            if (string.IsNullOrEmpty(b.Axis)) //Is the axis value assigned?
-            {
-                return UnityEngine.Input.GetKey(b.PositiveKey) || UnityEngine.Input.GetKey(b.AlternativePositiveKey); //Get key of keycode
-            }
+            bool postiveAxis = (!string.IsNullOrEmpty(b.Axis) && UnityEngine.Input.GetAxisRaw(b.Axis) > 0); //Check positve axis
+            bool altpositiveAxis = (!string.IsNullOrEmpty(b.AlternativeAxis) && UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0); //Check alt positve axis
+            bool negativeAxis = (!string.IsNullOrEmpty(b.Axis) && UnityEngine.Input.GetAxisRaw(b.Axis) < 0); //Check alt negative axis
+            bool altNegativeAxis = (!string.IsNullOrEmpty(b.AlternativeAxis) && UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) < 0); //Check alt negative axis
 
-            if (b.ButtonDirection == PositiveNegative.Positive) //Does the button return a positive value from the axis?
-            {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
-            }
-            else
-            {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) < 0;
-            }
+            bool final = b.ButtonDirection == PositiveNegative.Positive
+                ? postiveAxis
+                : negativeAxis;
+
+            bool Altfinal = b.AlternativeButtonDirection == PositiveNegative.Positive
+                ? altpositiveAxis
+                : altNegativeAxis;
+
+            return UnityEngine.Input.GetKey(b.PositiveKey) ||
+                   UnityEngine.Input.GetKey(b.AlternativePositiveKey) || final || Altfinal;
         }
 
         /// <summary>
@@ -242,17 +244,22 @@ namespace CreamyCheaks.Input
                 return false;
             }
 
-            if (string.IsNullOrEmpty(b.Axis)) //Is the axis value assigned?
-                return UnityEngine.Input.GetKeyDown(b.PositiveKey) || UnityEngine.Input.GetKeyDown(b.AlternativePositiveKey); //Get key down of keycode
 
-            if (b.ButtonDirection == PositiveNegative.Positive) //Does the button return a positive value from the axis?
-            {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
-            }
-            else
-            {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) < 0;
-            }
+            bool postiveAxis = (!string.IsNullOrEmpty(b.Axis) && UnityEngine.Input.GetAxisRaw(b.Axis) > 0); //Check positve axis
+            bool altpositiveAxis = (!string.IsNullOrEmpty(b.AlternativeAxis) && UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0); //Check alt positve axis
+            bool negativeAxis = (!string.IsNullOrEmpty(b.Axis) && UnityEngine.Input.GetAxisRaw(b.Axis) < 0); //Check alt negative axis
+            bool altNegativeAxis = (!string.IsNullOrEmpty(b.AlternativeAxis) && UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) < 0); //Check alt negative axis
+
+            bool final = b.ButtonDirection == PositiveNegative.Positive
+                ? postiveAxis
+                : negativeAxis;
+
+            bool Altfinal = b.AlternativeButtonDirection == PositiveNegative.Positive
+                ? altpositiveAxis
+                : altNegativeAxis;
+
+            return UnityEngine.Input.GetKeyDown(b.PositiveKey) ||
+                   UnityEngine.Input.GetKeyDown(b.AlternativePositiveKey) || final || Altfinal;
         }
 
         /// <summary>
@@ -276,18 +283,22 @@ namespace CreamyCheaks.Input
                 Debug.LogError("Button \"" + button + "\" could not be found");
                 return false;
             }
+            
+            bool postiveAxis = (!string.IsNullOrEmpty(b.Axis) && UnityEngine.Input.GetAxisRaw(b.Axis) > 0); //Check positve axis
+            bool altpositiveAxis = (!string.IsNullOrEmpty(b.AlternativeAxis) && UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0); //Check alt positve axis
+            bool negativeAxis = (!string.IsNullOrEmpty(b.Axis) && UnityEngine.Input.GetAxisRaw(b.Axis) < 0); //Check alt negative axis
+            bool altNegativeAxis = (!string.IsNullOrEmpty(b.AlternativeAxis) && UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) < 0); //Check alt negative axis
 
-            if (string.IsNullOrEmpty(b.Axis)) //Is the axis value assigned?
-                return UnityEngine.Input.GetKeyUp(b.PositiveKey) || UnityEngine.Input.GetKeyUp(b.AlternativePositiveKey); ; //Get key up of keycode
+            bool final = b.ButtonDirection == PositiveNegative.Positive
+                ? postiveAxis
+                : negativeAxis;
 
-            if (b.ButtonDirection == PositiveNegative.Positive) //Does the button return a positive value from the axis?
-            {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) > 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
-            }
-            else
-            {
-                return UnityEngine.Input.GetAxisRaw(b.Axis) < 0 || UnityEngine.Input.GetAxisRaw(b.AlternativeAxis) > 0;
-            }
+            bool Altfinal = b.AlternativeButtonDirection == PositiveNegative.Positive
+                ? altpositiveAxis
+                : altNegativeAxis;
+
+            return UnityEngine.Input.GetKeyUp(b.PositiveKey) ||
+                   UnityEngine.Input.GetKeyUp(b.AlternativePositiveKey) || final || Altfinal;
         }
 
         /// <summary>
@@ -507,11 +518,13 @@ namespace CreamyCheaks.Input
     {
         public string Name;
 
+        public ButtonInputType MainInputType;
         public KeyCode PositiveKey;
         public KeyCode NegativeKey;
         public string Axis;
         public PositiveNegative ButtonDirection;
 
+        public ButtonInputType AlternativeInputType;
         public KeyCode AlternativePositiveKey;
         public KeyCode AlternativeNegativeKey;
         public string AlternativeAxis;
@@ -524,6 +537,13 @@ namespace CreamyCheaks.Input
             return b.Name == Name;
         }
     }
+
+    public enum ButtonInputType
+    {
+        Keys,
+        Axis
+    }
+
 
     public enum PositiveNegative
     {
