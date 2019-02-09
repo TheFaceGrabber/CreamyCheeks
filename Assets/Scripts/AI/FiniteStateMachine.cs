@@ -3,23 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FiniteStateMachine : MonoBehaviour
 {
     public State CurrentState;
 
-    public void Update()
+    public NavMeshAgent Agent { get; private set; }
+
+    public void Awake()
     {
-        throw new System.NotImplementedException();
+        Agent = GetComponent<NavMeshAgent>();
     }
 
     public void Start()
     {
-        throw new System.NotImplementedException();
+        SetDestination(transform.position);
     }
 
-    public void Awake()
+    public void Update()
     {
-        throw new System.NotImplementedException();
+        CurrentState.Run(this);
+    }
+
+    public void SetDestination(Vector3 loc)
+    {
+        Agent.SetDestination(loc);
+    }
+
+    public void UpdateState(State state)
+    {
+        CurrentState = state;
     }
 }
