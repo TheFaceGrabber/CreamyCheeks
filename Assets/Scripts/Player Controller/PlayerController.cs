@@ -27,7 +27,10 @@ namespace CreamyCheaks.PlayerController
         public float MaxBobRun; //How much the camera will move when running
         public float BobSpeed; //How fast the bob will run
 
+        [Header("Misc")]
         public LayerMask GroundCheckMask; //The mask used for ignore certain colliders when checking for grounded
+
+        public GameObject Flashlight;
 
         public bool IsGrounded //Finds whether or not the player is on the ground
         {

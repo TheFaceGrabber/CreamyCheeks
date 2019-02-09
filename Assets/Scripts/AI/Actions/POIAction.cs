@@ -7,6 +7,6 @@ public class POIAction : Action
 {
     public override void Run(FiniteStateMachine stateMachine)
     {
-        throw new System.NotImplementedException();
+
     }
 }
