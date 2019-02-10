@@ -7,6 +7,6 @@ public class CanGoUpstairsDecision : Decision
 {
     public override bool Run(FiniteStateMachine stateMachine)
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 }
