@@ -315,14 +315,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpForce: 3
   WalkSpeed: 3
-  RunSpeed: 8
+  RunSpeed: 6
   MouseSensitivity: {x: 10, y: 10}
-  GamepadSensitivity: {x: 0, y: 0}
+  GamepadSensitivity: {x: 150, y: 150}
   MaxMouseX: 80
   MinMouseX: -75
-  MaxBobWalk: 0
-  MaxBobRun: 0
-  BobSpeed: 0
+  MaxBobWalk: 0.025
+  MaxBobRun: 0.1
+  BobSpeed: 16
   GroundCheckMask:
     serializedVersion: 2
     m_Bits: 4294966783
@@ -344,7 +344,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 85a67d6cb59003043bc5f08b80608f10, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.35
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
