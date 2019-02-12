@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 4797071953342982}
   - component: {fileID: 33038439680584574}
   - component: {fileID: 23747376269303242}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Door.Latch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1119527022332632
 GameObject:
@@ -38,12 +38,12 @@ GameObject:
   - component: {fileID: 4972385323863216}
   - component: {fileID: 33291929082762550}
   - component: {fileID: 23468556642341344}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Padlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1174561656411244
 GameObject:
@@ -55,12 +55,12 @@ GameObject:
   - component: {fileID: 4028246009387000}
   - component: {fileID: 33533012199794290}
   - component: {fileID: 23621340252418588}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Door.Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1190243862479274
 GameObject:
@@ -72,12 +72,12 @@ GameObject:
   - component: {fileID: 4751488929529696}
   - component: {fileID: 33911464586691006}
   - component: {fileID: 23142624577683952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Door.Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1224461510920272
 GameObject:
@@ -88,12 +88,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4862665793163476}
   - component: {fileID: 65586027142240182}
-  m_Layer: 0
+  - component: {fileID: 114916954163437722}
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1464588972583154
 GameObject:
@@ -103,12 +104,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4935414449198516}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LatchRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1921508391727336
 GameObject:
@@ -118,12 +119,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4684852159627100}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: dfk_door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4028246009387000
 Transform:
@@ -146,29 +147,29 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1921508391727336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalPosition: {x: 8.75, y: 0, z: -22.727}
+  m_LocalScale: {x: 1.0620073, y: 1, z: 1}
   m_Children:
   - {fileID: 4751488929529696}
   - {fileID: 4028246009387000}
   - {fileID: 4862665793163476}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
 --- !u!4 &4751488929529696
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1190243862479274}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.000013576819, z: -0, w: 1}
   m_LocalPosition: {x: 0.7214512, y: 1.230067, z: -0.17057659}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4684852159627100}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.002, z: 0}
 --- !u!4 &4797071953342982
 Transform:
   m_ObjectHideFlags: 1
@@ -402,3 +403,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2.5, z: 0.18}
   m_Center: {x: 0, y: 1.25, z: -0.1}
+--- !u!114 &114916954163437722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1224461510920272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f922ba4474dd544a8affe27db194b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
