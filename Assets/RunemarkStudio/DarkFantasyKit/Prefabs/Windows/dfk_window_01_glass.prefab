@@ -53,12 +53,14 @@ GameObject:
   - component: {fileID: 4960191060308630}
   - component: {fileID: 33841909374049866}
   - component: {fileID: 23711333680297992}
-  m_Layer: 0
+  - component: {fileID: 65999346786683416}
+  - component: {fileID: 114713781286116026}
+  m_Layer: 10
   m_Name: Window.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1890246483899110
 GameObject:
@@ -70,12 +72,14 @@ GameObject:
   - component: {fileID: 4541866758821532}
   - component: {fileID: 33909461618646860}
   - component: {fileID: 23929427257132418}
-  m_Layer: 0
+  - component: {fileID: 65814790716262786}
+  - component: {fileID: 114034438133881912}
+  m_Layer: 10
   m_Name: Window.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4281540047948170
 Transform:
@@ -96,7 +100,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1890246483899110}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.42059994, y: 1.5209332, z: -0.04057722}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -109,8 +113,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377936332678470}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalPosition: {x: -21.199692, y: -23.442236, z: 16.003054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4960191060308630}
@@ -118,14 +122,14 @@ Transform:
   - {fileID: 4281540047948170}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
 --- !u!4 &4960191060308630
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492616401992388}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.42059994, y: 1.5209332, z: -0.04057722}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -261,3 +265,51 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1310077766174806}
   m_Mesh: {fileID: 4300000, guid: a0c04497a1dd74846877c78062b062c3, type: 3}
+--- !u!65 &65814790716262786
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890246483899110}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.421924, y: 1.0316855, z: 0.06750238}
+  m_Center: {x: 0.21009427, y: 0.00012153387, z: 0.0068250764}
+--- !u!65 &65999346786683416
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492616401992388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.421924, y: 1.0316855, z: 0.06750238}
+  m_Center: {x: -0.21009809, y: 0.00012153387, z: 0.00682603}
+--- !u!114 &114034438133881912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890246483899110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0283ad2004a89c14da81fc274c140bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsLeft: 1
+--- !u!114 &114713781286116026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492616401992388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0283ad2004a89c14da81fc274c140bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsLeft: 0
