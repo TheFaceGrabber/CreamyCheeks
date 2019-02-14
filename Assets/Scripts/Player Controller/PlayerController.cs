@@ -36,6 +36,8 @@ namespace CreamyCheaks.PlayerController
 
         public Transform CameraTransform; //The transform component on the camera
 
+        bool isTakingInput;
+
         Rigidbody rigidbody; //The rigidbody on the player, for movement
         bool isRunning; //Are we running
 
@@ -48,6 +50,7 @@ namespace CreamyCheaks.PlayerController
 
         void Start()
         {
+            isTakingInput = true;
             rigidbody = GetComponent<Rigidbody>();
 
             bobStartHeight = CameraTransform.localPosition.y;
@@ -58,9 +61,16 @@ namespace CreamyCheaks.PlayerController
 
         void Update()
         {
-            CameraRotation();
-            Movement();
-            HeadBob();
+            if(isTakingInput){
+                CameraRotation();
+                Movement();
+                HeadBob();
+            }
+        }
+        
+        void SetIsTakingInput(bool takeInput)
+        {
+            isTakingInput = takeInput;
         }
 
         void HeadBob()
