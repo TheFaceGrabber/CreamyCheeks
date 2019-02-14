@@ -4,7 +4,22 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class PointOfInterest : MonoBehaviour
+namespace CreamyCheaks.AI
 {
-    public bool IsInUse { get; set; }
+    public class PointOfInterest : MonoBehaviour
+    {
+        public bool IsInUse { get; set; }
+
+        public float UseTime = 1.0f;
+
+        private void OnDrawGizmos()
+        {
+            var c = Gizmos.color;
+            Gizmos.color = Color.red;
+            Gizmos.DrawCube(transform.position, Vector3.one);
+            Gizmos.color = c;
+
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward);
+        }
+    }
 }

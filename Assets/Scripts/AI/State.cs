@@ -1,35 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CreamyCheaks.AI.Actions;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/State")]
-public class State : ScriptableObject
+namespace CreamyCheaks.AI
 {
-    public Action[] Actions;
-
-    public Transition[] Transitions;
-
-    public void Run(FiniteStateMachine stateMachine)
+    [CreateAssetMenu(menuName = "AI/State")]
+    public class State : ScriptableObject
     {
-        for (int i = 0; i < Actions.Length; i++)
-        {
-            Actions[i].Run(stateMachine);
-        }
-        for (int i = 0; i < Transitions.Length; i++)
-        {
-            bool decisionSucceeded = Transitions[i].Decision.Run(stateMachine);
+        public Action Action;
 
-            if (decisionSucceeded)
+        public Transition[] Transitions;
+
+        public void Run(FiniteStateMachine stateMachine)
+        {
+            Action.Run(stateMachine);
+        }
+
+        public void RunEndConditions(FiniteStateMachine stateMachine)
+        {
+            for (int i = 0; i < Transitions.Length; i++)
             {
-                if(Transitions[i].TrueState)
-                    stateMachine.UpdateState(Transitions[i].TrueState);
+                bool decisionSucceeded = Transitions[i].Decision.Run(stateMachine);
+
+                if (decisionSucceeded)
+                {
+                    if (Transitions[i].TrueState)
+                    {
+                        stateMachine.UpdateState(Transitions[i].TrueState);
+                        stateMachine.InStateForSeconds = 0;
+                        stateMachine.Agent.enabled = false;
+                        stateMachine.Agent.enabled = true;
+                    }
+                }
             }
-            else
-            {
-                if (Transitions[i].FalseState)
-                    stateMachine.UpdateState(Transitions[i].FalseState);
-            }
+
         }
     }
 }

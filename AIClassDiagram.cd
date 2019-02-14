@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Action">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\AI\Actions\Action.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FiniteStateMachine">
+    <Position X="5.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAABCEAACAAAAAAAAAAggAABAQAQEA=</HashCode>
+      <FileName>Assets\Scripts\AI\FiniteStateMachine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="CurrentState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="State">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAY=</HashCode>
+      <FileName>Assets\Scripts\AI\State.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Action" />
+      <Field Name="Transitions" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Decision">
+    <Position X="10" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\AI\Decisions\Decision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transition">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\Transition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Decision" />
+      <Field Name="TrueState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="POIDecision">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\AI\Decisions\POIDecision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanGoUpstairsDecision">
+    <Position X="10" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\AI\Decisions\CanGoUpstairsDecision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WanderAction">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\AI\Actions\WanderAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POIAction">
+    <Position X="2" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\AI\Actions\POIAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointOfInterest" Collapsed="true">
+    <Position X="10" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\PointOfInterest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

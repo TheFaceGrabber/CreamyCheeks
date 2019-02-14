@@ -49,8 +49,11 @@ namespace CreamyCheaks.PlayerController
         private float bobStartHeight; //The starting height of the camera (0.8)
         private float bobTimer; //The current timer for head bob
 
+        private bool allowInput;
+
         void Start()
         {
+            allowInput = true;
             rigidbody = GetComponent<Rigidbody>();
 
             bobStartHeight = CameraTransform.localPosition.y;
@@ -59,11 +62,23 @@ namespace CreamyCheaks.PlayerController
                 InputManager.Initialise();
         }
 
+        public void SetAllowInput(bool t)
+        {
+            allowInput = t;
+            if (t)
+                rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            else
+                rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+
         void Update()
         {
-            CameraRotation();
-            Movement();
-            HeadBob();
+            if (allowInput)
+            {
+                CameraRotation();
+                Movement();
+                HeadBob();
+            }
         }
 
         void HeadBob()

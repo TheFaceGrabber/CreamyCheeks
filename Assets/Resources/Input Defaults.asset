@@ -85,7 +85,7 @@ MonoBehaviour:
     Axis: 
     ButtonDirection: 0
     AlternativeInputType: 0
-    AlternativePositiveKey: 0
+    AlternativePositiveKey: 332
     AlternativeNegativeKey: 0
     AlternativeAxis: 
     AlternativeButtonDirection: 0
@@ -99,4 +99,15 @@ MonoBehaviour:
     AlternativePositiveKey: 0
     AlternativeNegativeKey: 0
     AlternativeAxis: DPad X
+    AlternativeButtonDirection: 0
+  - Name: Cancel Interaction
+    MainInputType: 0
+    PositiveKey: 27
+    NegativeKey: 0
+    Axis: 
+    ButtonDirection: 0
+    AlternativeInputType: 0
+    AlternativePositiveKey: 331
+    AlternativeNegativeKey: 0
+    AlternativeAxis: 
     AlternativeButtonDirection: 0

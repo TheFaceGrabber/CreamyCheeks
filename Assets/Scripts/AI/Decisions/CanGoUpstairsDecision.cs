@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class CanGoUpstairsDecision : Decision
+namespace CreamyCheaks.AI.Decisions
 {
-    public override bool Run(FiniteStateMachine stateMachine)
+    public class CanGoUpstairsDecision : Decision
     {
-        return false;
+        public override bool Run(FiniteStateMachine stateMachine)
+        {
+            return false;
+        }
     }
 }

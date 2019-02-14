@@ -1,25 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CreamyCheaks.AI.RoomSystem;
 using UnityEngine;
 using UnityEngine.AI;
-[CreateAssetMenu(menuName = "AI/Actions/Wander")]
-public class WanderAction : Action
+
+namespace CreamyCheaks.AI.Actions
 {
-    public override void Run(FiniteStateMachine stateMachine)
+    [CreateAssetMenu(menuName = "AI/Actions/Wander")]
+    public class WanderAction : Action
     {
-        if (stateMachine.Agent.remainingDistance == 0)
+        public override void Run(FiniteStateMachine stateMachine)
         {
-            float maxWalkDist = 30;
+            Vector3 loc = new Vector3(stateMachine.Agent.steeringTarget.x, stateMachine.transform.position.y,
+                stateMachine.Agent.steeringTarget.z);
+            var dir = loc - stateMachine.transform.position;
+            stateMachine.WantedRotation =
+                dir == Vector3.zero ? stateMachine.transform.rotation : Quaternion.LookRotation(dir);
 
-            Vector3 randomDir = Random.insideUnitSphere * maxWalkDist;
-            randomDir += stateMachine.transform.position;
+            stateMachine.HeadLookTarget = Vector3.zero;
 
-            NavMeshHit hit;
-
-            if (NavMesh.SamplePosition(randomDir, out hit, maxWalkDist, 1))
+            stateMachine.Agent.stoppingDistance = 1f;
+            stateMachine.Animator.SetBool("IsWalking", true);
+            if (stateMachine.DistanceLeft <= stateMachine.Agent.stoppingDistance)
             {
-                stateMachine.SetDestination(hit.position);
+                var roomManager = GameObject.Find("RoomManager").GetComponent<RoomHandler>();
+                stateMachine.LastRoom = stateMachine.CurrentRoom;
+                stateMachine.CurrentRoom = roomManager.GetNextRoom(stateMachine.CurrentRoom, stateMachine.LastRoom);
+                stateMachine.Agent.SetDestination(stateMachine.CurrentRoom.GetPoint().position);
             }
         }
     }

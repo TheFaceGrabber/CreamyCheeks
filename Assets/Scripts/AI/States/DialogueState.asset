@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc7feece2d08124c88d16308bc31559, type: 3}
+  m_Name: DialogueState
+  m_EditorClassIdentifier: 
+  Action: {fileID: 11400000, guid: 29d7f3e8d8321f946a1975f172727d51, type: 2}
+  Transitions:
+  - Decision: {fileID: 11400000, guid: dc4e5217fea98544c9a233960ee0d4f4, type: 2}
+    TrueState: {fileID: 11400000, guid: 51cb74afcc0ec6446a673810e2cf73da, type: 2}
