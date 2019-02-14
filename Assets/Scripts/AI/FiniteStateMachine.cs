@@ -90,4 +90,14 @@ namespace CreamyCheaks.AI
             DoesPlayerWantToInteract = false;
         }
     }
+
+    public void SetDestination(Vector3 loc)
+    {
+        Agent.SetDestination(loc);
+    }
+
+    public void UpdateState(State state)
+    {
+        CurrentState = state;
+    }
 }

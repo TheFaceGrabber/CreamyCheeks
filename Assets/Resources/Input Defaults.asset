@@ -111,3 +111,14 @@ MonoBehaviour:
     AlternativeNegativeKey: 0
     AlternativeAxis: 
     AlternativeButtonDirection: 0
+  - Name: Toggle Flashlight
+    MainInputType: 0
+    PositiveKey: 118
+    NegativeKey: 0
+    Axis: 
+    ButtonDirection: 0
+    AlternativeInputType: 1
+    AlternativePositiveKey: 0
+    AlternativeNegativeKey: 0
+    AlternativeAxis: DPad X
+    AlternativeButtonDirection: 0
