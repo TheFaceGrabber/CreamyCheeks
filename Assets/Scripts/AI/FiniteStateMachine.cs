@@ -2,37 +2,92 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CreamyCheaks.AI.RoomSystem;
+using CreamyCheaks.DialogSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FiniteStateMachine : MonoBehaviour
+namespace CreamyCheaks.AI
 {
-    public State CurrentState;
-
-    public NavMeshAgent Agent { get; private set; }
-
-    public void Awake()
+    public class FiniteStateMachine : MonoBehaviour
     {
-        Agent = GetComponent<NavMeshAgent>();
-    }
+        public Branch InitialInteractionBranch;
 
-    public void Start()
-    {
-        SetDestination(transform.position);
-    }
+        public State CurrentState;
 
-    public void Update()
-    {
-        CurrentState.Run(this);
-    }
+        public float RotationSpeed;
 
-    public void SetDestination(Vector3 loc)
-    {
-        Agent.SetDestination(loc);
-    }
+        public float DistanceLeft;
 
-    public void UpdateState(State state)
-    {
-        CurrentState = state;
+        public Quaternion WantedRotation { get; set; }
+
+        public NavMeshAgent Agent { get; private set; }
+        public Animator Animator { get; private set; }
+
+        public Room LastRoom;
+        public Room CurrentRoom;
+
+        public PointOfInterest CurrentPOI;
+        public bool IsAtPOI = false;
+
+        public Vector3 HeadLookTarget { get; set; }
+
+        public float InStateForSeconds { get; set; }
+
+        public bool DoesPlayerWantToInteract { get; private set; }
+
+        public void Awake()
+        {
+            Agent = GetComponent<NavMeshAgent>();
+            Animator = GetComponent<Animator>();
+        }
+
+        public void Start()
+        {
+            SetDestination(transform.position);
+        }
+
+        public void Update()
+        {
+            CurrentState.Run(this);
+
+            DistanceLeft = Vector3.Distance(Agent.destination, transform.position);
+
+            InStateForSeconds += Time.deltaTime;
+
+            Agent.updateRotation = false;
+            transform.rotation = Quaternion.Slerp(transform.rotation, WantedRotation, RotationSpeed * Time.deltaTime);
+
+            CurrentState.RunEndConditions(this);
+        }
+
+        public void SetDestination(Vector3 loc)
+        {
+            Agent.SetDestination(loc);
+        }
+
+        public void UpdateState(State state)
+        {
+            CurrentState = state;
+        }
+
+        private void OnAnimatorIK(int layerIndex)
+        {
+            if (HeadLookTarget != Vector3.zero)
+            {
+                Animator.SetLookAtWeight(0.9f, 0.25f, 1, 1);
+                Animator.SetLookAtPosition(HeadLookTarget);
+            }
+        }
+
+        public void RequestTalk()
+        {
+            DoesPlayerWantToInteract = true;
+        }
+
+        public void EndTalk()
+        {
+            DoesPlayerWantToInteract = false;
+        }
     }
 }

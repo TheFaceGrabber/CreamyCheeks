@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CreamyCheaks.AI.Decisions;
 
-[Serializable()]
-public class Transition
+namespace CreamyCheaks.AI
 {
-    public Decision Decision;
+    [Serializable()]
+    public class Transition
+    {
+        public Decision Decision;
 
-    public State TrueState;
-
-    public State FalseState;
+        public State TrueState;
+    }
 }

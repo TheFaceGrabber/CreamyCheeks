@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc7feece2d08124c88d16308bc31559, type: 3}
+  m_Name: POIState
+  m_EditorClassIdentifier: 
+  Action: {fileID: 11400000, guid: a760f52db0c84fe4da4ad15aa7a7e511, type: 2}
+  Transitions:
+  - Decision: {fileID: 11400000, guid: 79938bb1963bdd140ab1c570e80337ac, type: 2}
+    TrueState: {fileID: 11400000, guid: 51cb74afcc0ec6446a673810e2cf73da, type: 2}
+  - Decision: {fileID: 11400000, guid: 3fda72d0c8ddb5c4482ceffd02f24f85, type: 2}
+    TrueState: {fileID: 11400000, guid: 3d2186f75c69e424590a0bf583c92ebb, type: 2}
