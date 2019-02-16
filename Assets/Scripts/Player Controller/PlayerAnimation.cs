@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CreamyCheaks.Input;
 
 public class PlayerAnimation : MonoBehaviour {
 
@@ -24,22 +25,21 @@ public class PlayerAnimation : MonoBehaviour {
 
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
         {
-            if (Input.GetKey(KeyCode.W))
+            if (InputManager.GetAxis("Move Forward") > 0)
             {
                 anim.SetBool("isWalkingBack", false);
                 anim.SetBool("isWalking", true);
             }
-
-            if (Input.GetKey(KeyCode.S))
+            else if(InputManager.GetAxis("Move Forward") < 0)
             {
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isWalkingBack", true);
             }
-        } else
-        {
-            anim.SetBool("isWalking", false);
-            anim.SetBool("isWalkingBack", false);
-        }
-        	
+            else
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isWalkingBack", false);
+            }
+        }	
 	}
 }
