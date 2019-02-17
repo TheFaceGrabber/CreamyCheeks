@@ -39,6 +39,7 @@ public class PlayerInteract : MonoBehaviour {
             }
         }
 
+       // if (Input.GetKeyDown(KeyCode.Z)) 
         if (InputManager.GetButtonDown("Interact"))
         {
             if (CurrentInteractObject != null)
