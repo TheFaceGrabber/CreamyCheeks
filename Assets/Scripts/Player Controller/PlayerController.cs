@@ -69,6 +69,8 @@ namespace CreamyCheaks.PlayerController
                 rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             else
                 rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+
+            GetComponent<PlayerInteract>().enabled = t;
         }
 
         void Update()

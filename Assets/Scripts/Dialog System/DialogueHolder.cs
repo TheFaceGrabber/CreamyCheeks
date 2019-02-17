@@ -31,9 +31,7 @@ namespace CreamyCheaks.DialogSystem
         private FiniteStateMachine curTalkingTo;
 
         private PlayerController.PlayerController player;
-
-        private Coroutine dialogueCoroutine;
-
+        
         void Awake()
         {
             player = GetComponent<PlayerController.PlayerController>();
@@ -41,25 +39,7 @@ namespace CreamyCheaks.DialogSystem
 
         void Update()
         {
-            if (!IsDialogueRunning)
-            {
-                if (InputManager.GetButtonDown("Interact"))
-                {
-                    RaycastHit hit;
-                    if (Physics.Raycast(player.CameraTransform.position, player.CameraTransform.forward, out hit, 10))
-                    {
-                        var fsm = hit.collider.transform.root.GetComponent<FiniteStateMachine>();
-                        if (fsm)
-                        {
-                            fsm.RequestTalk();
-                            curTalkingTo = fsm;
-                            BeginDialogue(curTalkingTo.InitialInteractionBranch);
-                            player.SetAllowInput(false);
-                        }
-                    }
-                }
-            }
-            else
+            if(IsDialogueRunning)
             {
                 if (InputManager.GetButtonDown("Cancel Interaction"))
                 {
@@ -67,12 +47,15 @@ namespace CreamyCheaks.DialogSystem
                 }
             }
         }
-        public void BeginDialogue(Branch branch)
+        public void BeginDialogue(Branch branch, FiniteStateMachine ai)
         {
+            if (IsDialogueRunning) return;
+            
             if (branch != null)
             {
                 IsDialogueRunning = true;
-                dialogueCoroutine = StartCoroutine(Run(branch));
+                curTalkingTo = ai;
+                StartCoroutine(Run(branch));
             }
             else
             {
@@ -128,7 +111,7 @@ namespace CreamyCheaks.DialogSystem
 
         void End()
         {
-            StopCoroutine(dialogueCoroutine);
+            StopAllCoroutines();
             curTalkingTo.EndTalk();
             curTalkingTo = null;
             IsDialogueRunning = false;
@@ -140,6 +123,8 @@ namespace CreamyCheaks.DialogSystem
 
         IEnumerator Run(Branch branch)
         {
+            player.SetAllowInput(false);
+
             curBranch = branch;
             ReplyPanel.SetActive(false);
             SpeechPanel.SetActive(true);

@@ -11,8 +11,6 @@ namespace CreamyCheaks.AI
 {
     public class FiniteStateMachine : MonoBehaviour
     {
-        public Branch InitialInteractionBranch;
-
         public State CurrentState;
 
         public float RotationSpeed;
