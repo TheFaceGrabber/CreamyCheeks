@@ -60,5 +60,6 @@ public class rpgStats : MonoBehaviour {
         Willpower.SetValue(StartWillpower);
         Perception.SetValue(StartPerception);
         Charisma.SetValue(StartCharisma);
+        GameObject.Find("UI").GetComponent<UIManager>().SetStats(StartStrength, StartAgility, StartIntelligence, StartWillpower, StartPerception, StartCharisma); //This line added by Lewis. Will crash however if value is over max value. Need to update
     }
 }
