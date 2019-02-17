@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CreamyCheaks.Input;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour {
@@ -36,10 +37,9 @@ public class PlayerInteract : MonoBehaviour {
                 CurrentInteractObject = null;
                 UI.HideInteractText();
             }
-            
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (InputManager.GetButtonDown("Interact"))
         {
             if (CurrentInteractObject != null)
             {
