@@ -34,6 +34,18 @@ public class rpgStats : MonoBehaviour {
                 value = 0;
             }
         }
+
+        public bool RollCheck()
+        {
+            if(Random.Range(1, value) <= value)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
     };
 
     public stat Health, Sanity, Strength, Agility, Intelligence, Willpower, Perception, Charisma; // Stats that are accessed through other scripts. E.g. GetComponent<rpgStats>().health.Add(-2);
