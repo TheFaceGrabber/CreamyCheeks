@@ -23,8 +23,7 @@ public class PlayerAnimation : MonoBehaviour {
             anim.SetBool("isCrouching", false);
         }
 
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-        {
+        
             if (InputManager.GetAxis("Move Forward") > 0)
             {
                 anim.SetBool("isWalkingBack", false);
@@ -40,6 +39,6 @@ public class PlayerAnimation : MonoBehaviour {
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isWalkingBack", false);
             }
-        }	
+        
 	}
 }
