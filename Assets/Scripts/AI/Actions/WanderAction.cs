@@ -30,6 +30,16 @@ namespace CreamyCheaks.AI.Actions
                 stateMachine.CurrentRoom = roomManager.GetNextRoom(stateMachine.CurrentRoom, stateMachine.LastRoom);
                 stateMachine.Agent.SetDestination(stateMachine.CurrentRoom.GetPoint().position);
             }
+
+            RaycastHit hit;
+            if (Physics.Raycast(stateMachine.transform.position, stateMachine.transform.forward, out hit, 1))
+            {
+                Door door = hit.collider.GetComponent<Door>();
+                if (door != null)
+                {
+                    door.PlayerInteract();
+                }
+            }
         }
     }
 }
