@@ -9,6 +9,7 @@ public class AIInteractor : Interactable
     public Branch InitBranch;
 
     private FiniteStateMachine fsm;
+    private Branch tempBranch;
 
     void Start()
     {
@@ -18,6 +19,13 @@ public class AIInteractor : Interactable
     public override void PlayerInteract()
     {
         fsm.RequestTalk();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<DialogueHolder>().BeginDialogue(InitBranch, fsm);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<DialogueHolder>().BeginDialogue(tempBranch != null ? tempBranch : InitBranch, fsm);
+        tempBranch = null;
+    }
+
+    public void ForcePlayerInteraction(Branch branch = null)
+    {
+        tempBranch = branch;
+        PlayerInteract();
     }
 }

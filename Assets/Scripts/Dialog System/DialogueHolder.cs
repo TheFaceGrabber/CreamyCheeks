@@ -45,6 +45,10 @@ namespace CreamyCheaks.DialogSystem
                 {
                     End();
                 }
+                
+                var dir = curTalkingTo.transform.position - transform.position;
+
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, Quaternion.LookRotation(dir).eulerAngles.y, transform.eulerAngles.z);
             }
         }
         public void BeginDialogue(Branch branch, FiniteStateMachine ai)
