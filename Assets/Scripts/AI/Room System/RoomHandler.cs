@@ -7,9 +7,19 @@ namespace CreamyCheaks.AI.RoomSystem
     {
         [SerializeField] List<Room> AllRooms = new List<Room>();
 
+        public bool PlayerHasBeenUpstairs;
+
+        public Room FallbackRoom
+        {
+            get { return AllRooms[0]; }
+        }
+
         public Room GetNextRoom(Room currentRoom, Room last)
         {
-            return currentRoom.GetNextRoom(last);
+            Room cur = currentRoom != null ? currentRoom : FallbackRoom;
+            Room la = last != null ? last : FallbackRoom;
+
+            return cur.GetNextRoom(la);
         }
     }
 }

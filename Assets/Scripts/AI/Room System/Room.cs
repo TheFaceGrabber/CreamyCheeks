@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CreamyCheaks.AI.RoomSystem
 {
@@ -8,10 +9,18 @@ namespace CreamyCheaks.AI.RoomSystem
         [SerializeField] List<Room> PossibleNextRooms = new List<Room>();
         [SerializeField] List<Transform> RoomPoints = new List<Transform>();
         public List<PointOfInterest> RoomPOIs = new List<PointOfInterest>();
+        public bool IsUpstairs;
 
         public Room GetNextRoom(Room lastRoom)
         {
-            var tempList = PossibleNextRooms;
+            var roomManager = GameObject.Find("RoomManager").GetComponent<RoomHandler>();
+
+            var tempList = new List<Room>();
+
+            if (roomManager.PlayerHasBeenUpstairs)
+                tempList = PossibleNextRooms;
+            else
+                tempList = PossibleNextRooms.Where(room => room.IsUpstairs == false).ToList();
 
             if (tempList.Contains(lastRoom))
             {
