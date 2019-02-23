@@ -389,6 +389,7 @@ MonoBehaviour:
   - {fileID: 432281618}
   - {fileID: 1932873959}
   - {fileID: 1303682078}
+  PlayerHasBeenUpstairs: 0
 --- !u!4 &554295428
 Transform:
   m_ObjectHideFlags: 0
