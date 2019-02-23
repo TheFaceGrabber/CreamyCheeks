@@ -9,6 +9,11 @@ namespace CreamyCheaks.AI.RoomSystem
 
         public bool PlayerHasBeenUpstairs;
 
+        public void SetPlayerHasBeenUpstairs(bool t)
+        {
+            PlayerHasBeenUpstairs = t;
+        }
+
         public Room FallbackRoom
         {
             get { return AllRooms[0]; }

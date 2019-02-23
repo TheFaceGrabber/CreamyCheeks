@@ -10,6 +10,7 @@ namespace CreamyCheaks.AI.RoomSystem
         [SerializeField] List<Transform> RoomPoints = new List<Transform>();
         public List<PointOfInterest> RoomPOIs = new List<PointOfInterest>();
         public bool IsUpstairs;
+        public bool IsLocked;
 
         public Room GetNextRoom(Room lastRoom)
         {
@@ -18,9 +19,9 @@ namespace CreamyCheaks.AI.RoomSystem
             var tempList = new List<Room>();
 
             if (roomManager.PlayerHasBeenUpstairs)
-                tempList = PossibleNextRooms;
+                tempList = PossibleNextRooms.Where(room => room.IsLocked == false).ToList();
             else
-                tempList = PossibleNextRooms.Where(room => room.IsUpstairs == false).ToList();
+                tempList = PossibleNextRooms.Where(room => room.IsUpstairs == false && room.IsLocked == false).ToList();
 
             if (tempList.Contains(lastRoom))
             {
