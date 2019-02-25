@@ -11,13 +11,16 @@ public class AIInteractor : Interactable
     private FiniteStateMachine fsm;
     private Branch tempBranch;
 
-    void Start()
+    void Awake()
     {
         fsm = GetComponent<FiniteStateMachine>();
     }
 
     public override void PlayerInteract()
     {
+        if(fsm == null)
+            fsm = GetComponent<FiniteStateMachine>();
+
         fsm.RequestTalk();
         GameObject.FindGameObjectWithTag("Player").GetComponent<DialogueHolder>().BeginDialogue(tempBranch != null ? tempBranch : InitBranch, fsm);
         tempBranch = null;
