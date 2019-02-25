@@ -28,6 +28,8 @@ namespace CreamyCheaks.AI
         public PointOfInterest CurrentPOI;
         public bool IsAtPOI = false;
 
+        public AudioClip[] ReactionsToBrokenObjects;
+
         public Vector3 HeadLookTarget { get; set; }
 
         public float InStateForSeconds { get; set; }
@@ -86,6 +88,13 @@ namespace CreamyCheaks.AI
         public void EndTalk()
         {
             DoesPlayerWantToInteract = false;
+        }
+
+        public void ReactToBreak()
+        {
+            int r = UnityEngine.Random.Range(0, ReactionsToBrokenObjects.Length);
+            AudioClip a = ReactionsToBrokenObjects[r];
+            //TODO PLAY AUDIO
         }
     }
 }

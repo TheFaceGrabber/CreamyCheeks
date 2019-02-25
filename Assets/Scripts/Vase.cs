@@ -31,6 +31,7 @@ public class Vase : MoveableObject {
 
     private void Smash()
     {
+        GetComponent<ObjectBreakReactor>().OnBreak();
         print("Smash");
         Instantiate(Rubble, transform.position, transform.rotation);
         Destroy(this.gameObject);

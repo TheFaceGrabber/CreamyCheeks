@@ -9,7 +9,7 @@ namespace CreamyCheaks.DialogSystem
     public class Branch : ScriptableObject
     {
         public List<string> Text = new List<string> (){ "Aela, ic aem Dwarhmann" };
-        public List<string> VoiceOver = new List<string>();
+        public List<AudioClip> VoiceOver = new List<AudioClip>();
 
         public List<Reply> Replies = new List<Reply>();
 
