@@ -11,6 +11,10 @@ namespace CreamyCheaks.AI.Decisions
     {
         public override bool Run(FiniteStateMachine stateMachine)
         {
+            if (stateMachine == null)
+            {
+                return false;
+            }
             return stateMachine.DoesPlayerWantToInteract;
         }
     }

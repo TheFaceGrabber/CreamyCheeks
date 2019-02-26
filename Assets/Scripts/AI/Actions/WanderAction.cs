@@ -13,6 +13,12 @@ namespace CreamyCheaks.AI.Actions
     {
         public override void Run(FiniteStateMachine stateMachine)
         {
+            if (stateMachine == null)
+            {
+                Debug.Log("stateMachine cannot be null... stopping wander action");
+                return;
+            }
+
             Vector3 loc = new Vector3(stateMachine.Agent.steeringTarget.x, stateMachine.transform.position.y,
                 stateMachine.Agent.steeringTarget.z);
             var dir = loc - stateMachine.transform.position;

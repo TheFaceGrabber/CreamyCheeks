@@ -14,7 +14,21 @@ namespace CreamyCheaks.AI.RoomSystem
 
         public Room GetNextRoom(Room lastRoom)
         {
-            var roomManager = GameObject.Find("RoomManager").GetComponent<RoomHandler>();
+            var obj = GameObject.Find("RoomManager");
+
+            if (obj == null)
+            {
+                Debug.Log("No \"RoomManager\" object found in the scene!");
+                return this;
+            }
+
+            var roomManager = obj.GetComponent<RoomHandler>();
+
+            if (roomManager == null)
+            {
+                Debug.Log("\"RoomManager\" object does not have a \"RoomHandler\" component attached!");
+                return this;
+            }
 
             var tempList = new List<Room>();
 
@@ -34,8 +48,13 @@ namespace CreamyCheaks.AI.RoomSystem
 
         public Transform GetPoint()
         {
-            int r = Random.Range(0, RoomPoints.Count);
-            return RoomPoints[r];
+            if (RoomPoints.Count > 0)
+            {
+                int r = Random.Range(0, RoomPoints.Count);
+                return RoomPoints[r];
+            }
+            
+            return null;
         }
     }
 }

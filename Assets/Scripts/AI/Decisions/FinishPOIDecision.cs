@@ -9,6 +9,10 @@ namespace CreamyCheaks.AI.Decisions
     {
         public override bool Run(FiniteStateMachine stateMachine)
         {
+            if (stateMachine == null)
+            {
+                return false;
+            }
             float timeSince = stateMachine.InStateForSeconds;
             bool r = stateMachine.IsAtPOI && timeSince > stateMachine.CurrentPOI.UseTime;
 

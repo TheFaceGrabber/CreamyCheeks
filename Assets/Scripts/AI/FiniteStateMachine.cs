@@ -68,7 +68,8 @@ namespace CreamyCheaks.AI
 
         public void UpdateState(State state)
         {
-            CurrentState = state;
+            if(state != null)
+                CurrentState = state;
         }
 
         private void OnAnimatorIK(int layerIndex)

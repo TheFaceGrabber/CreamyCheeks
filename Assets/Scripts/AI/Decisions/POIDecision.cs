@@ -13,6 +13,10 @@ namespace CreamyCheaks.AI.Decisions
     {
         public override bool Run(FiniteStateMachine stateMachine)
         {
+            if (stateMachine == null)
+            {
+                return false;
+            }
             if (stateMachine.DistanceLeft <= stateMachine.Agent.stoppingDistance &&
                 stateMachine.CurrentRoom.RoomPOIs.Count > 0)
             {

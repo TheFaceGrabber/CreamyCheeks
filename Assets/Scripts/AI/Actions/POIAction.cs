@@ -12,6 +12,12 @@ namespace CreamyCheaks.AI.Actions
     {
         public override void Run(FiniteStateMachine stateMachine)
         {
+            if (stateMachine == null)
+            {
+                Debug.Log("stateMachine cannot be null... stopping POI action");
+                return;
+            }
+
             stateMachine.Agent.stoppingDistance = 0.1f;
             stateMachine.Agent.SetDestination(stateMachine.CurrentPOI.transform.position);
             stateMachine.HeadLookTarget = Vector3.zero;
@@ -24,6 +30,7 @@ namespace CreamyCheaks.AI.Actions
                 stateMachine.Animator.SetBool("IsWalking", false);
 
                 stateMachine.WantedRotation = stateMachine.CurrentPOI.transform.rotation;
+                stateMachine.CurrentPOI.IsInUse = true;
             }
             else
             {

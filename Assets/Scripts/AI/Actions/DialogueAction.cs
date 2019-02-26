@@ -12,6 +12,11 @@ namespace CreamyCheaks.AI.Actions
     {
         public override void Run(FiniteStateMachine stateMachine)
         {
+            if (stateMachine == null)
+            {
+                Debug.Log("stateMachine cannot be null... stopping dialogue action");
+                return;
+            }
             stateMachine.Animator.SetBool("IsWalking", false);
             var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController.PlayerController>();
 
