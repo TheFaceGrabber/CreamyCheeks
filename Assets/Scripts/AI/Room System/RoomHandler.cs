@@ -25,7 +25,7 @@ namespace CreamyCheaks.AI.RoomSystem
 
         public Room GetNextRoom(Room currentRoom, Room last)
         {
-            if ((currentRoom != null && FallbackRoom != null) || (last != null && FallbackRoom != null))
+            if ((currentRoom != null || FallbackRoom != null) || (last != null || FallbackRoom != null))
             {
                 Room cur = currentRoom != null ? currentRoom : FallbackRoom;
                 Room la = last != null ? last : FallbackRoom;

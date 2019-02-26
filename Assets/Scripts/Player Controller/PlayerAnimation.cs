@@ -15,30 +15,10 @@ public class PlayerAnimation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKey(KeyCode.C))
-        {
-            anim.SetBool("isCrouching", true);
-        } else
-        {
-            anim.SetBool("isCrouching", false);
-        }
+        float v = InputManager.GetAxis("Move Forward");
+        float h = InputManager.GetAxis("Move Sideways");
 
-        
-            if (InputManager.GetAxis("Move Forward") > 0)
-            {
-                anim.SetBool("isWalkingBack", false);
-                anim.SetBool("isWalking", true);
-            }
-            else if(InputManager.GetAxis("Move Forward") < 0)
-            {
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isWalkingBack", true);
-            }
-            else
-            {
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isWalkingBack", false);
-            }
-        
+        anim.SetFloat("V",v);
+        anim.SetFloat("H",h);
 	}
 }
