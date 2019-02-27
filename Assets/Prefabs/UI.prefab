@@ -2816,6 +2816,7 @@ GameObject:
   - component: {fileID: 224651669944961340}
   - component: {fileID: 222128356575612750}
   - component: {fileID: 114139852343706538}
+  - component: {fileID: 114441050613632212}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5372,6 +5373,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114441050613632212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937634483280184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9356a158195bc48aa3f40da3fe4a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyboardImage: {fileID: 21300000, guid: 665bfc873e333d84685f081a5bfa5861, type: 3}
+  GamepadImage: {fileID: 21300000, guid: 2fb0dcc66df4f444aafcb8ec6e324ae1, type: 3}
 --- !u!114 &114447848698033382
 MonoBehaviour:
   m_ObjectHideFlags: 1
