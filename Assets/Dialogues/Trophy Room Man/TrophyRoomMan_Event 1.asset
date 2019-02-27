@@ -14,5 +14,7 @@ MonoBehaviour:
   Text:
   - Just take them!
   - Get out of my sight!
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: 414b90e2e28fee845ab8d6bb77849b4d, type: 3}
+  - {fileID: 8300000, guid: c1057090dcc4c484091b66a19f6f5c08, type: 3}
   Replies: []

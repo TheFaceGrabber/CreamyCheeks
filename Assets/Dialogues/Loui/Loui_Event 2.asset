@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - I'm looking for spirits
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: ea3a13709e3cf3147b9adb808002212d, type: 3}
   Replies:
   - Text: Okay?
     NextBranch: {fileID: 11400000, guid: 07b4c94434b5fc3429014bb3ec6d75c7, type: 2}

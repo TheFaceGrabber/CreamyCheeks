@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - My Child, what is it that we have witnessed in this room?
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: 55b285175eebf6e4a8a3744b736f6dfb, type: 3}
   Replies:
   - Text: I know not, Father.
     NextBranch: {fileID: 11400000, guid: 64aaac6a9d8e9044da660cc871b2144e, type: 2}

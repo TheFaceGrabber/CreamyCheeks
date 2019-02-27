@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - Those medals aren't yours!
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: 57f7804a0b56faa45b3383ffb912f05c, type: 3}
   Replies:
   - Text: What medals?
     NextBranch: {fileID: 11400000, guid: c799d8ccef5187d4e9cb8c1736587b01, type: 2}

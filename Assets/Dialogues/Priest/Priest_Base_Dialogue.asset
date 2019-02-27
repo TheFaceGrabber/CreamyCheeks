@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - I am sorry, my child, but I am rather busy at the moment
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: 66d6bf34dda494649aa8844699e6f264, type: 3}
   Replies:
   - Text: Okay
     NextBranch: {fileID: 0}

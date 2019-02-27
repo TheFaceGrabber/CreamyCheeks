@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - I told you to go away!
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: 9d941740b1dcaa94cb0e70057356ff08, type: 3}
   Replies:
   - Text: '...'
     NextBranch: {fileID: 0}
