@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - Sh...sh...sh, you'll scare them away
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: 26cdde1cd30b3984dbc999f5826d132c, type: 3}
   Replies: []

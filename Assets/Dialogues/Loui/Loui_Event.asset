@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - Hello...
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: 5202281b5cb010e42bb5e3a2a8cf6410, type: 3}
   Replies:
   - Text: Hi... Loui?
     NextBranch: {fileID: 11400000, guid: ae084cd2f4cafaf468f16493cfe0773d, type: 2}

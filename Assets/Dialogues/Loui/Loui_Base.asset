@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text:
   - Must...find...spirits...
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: b0446f56fe4a8fe478c222b6e0347d50, type: 3}
   Replies:
   - Text: '...'
     NextBranch: {fileID: 0}

@@ -14,5 +14,6 @@ MonoBehaviour:
   Text:
   - I am Eric the priest, and I have been assigned here as there is an evil spirit
     here. The house is already playing tricks on me. I'll explore further.
-  VoiceOver: []
+  VoiceOver:
+  - {fileID: 8300000, guid: fdb473374cd77dd4596b36750f939852, type: 3}
   Replies: []
