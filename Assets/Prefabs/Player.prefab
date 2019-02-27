@@ -2666,7 +2666,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 55
   orthographic: 0
@@ -3360,7 +3360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpForce: 3
   WalkSpeed: 3
-  RunSpeed: 6
+  RunSpeed: 4
   MouseSensitivity: {x: 10, y: 10}
   GamepadSensitivity: {x: 150, y: 150}
   MaxMouseX: 80
