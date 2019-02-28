@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 114460149984281924}
   - component: {fileID: 195745145348625384}
   - component: {fileID: 114718720657961456}
-  - component: {fileID: 208407952177541938}
   m_Layer: 10
   m_Name: PRIEST
   m_TagString: Untagged
@@ -2190,6 +2189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5ce3aecf73f62469718b3248ac93e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractText: 
   InitBranch: {fileID: 11400000, guid: 3b4f88956b8d1c546afb54e5331503be, type: 2}
 --- !u!136 &136367509962872458
 CapsuleCollider:
@@ -2648,18 +2648,3 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!208 &208407952177541938
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1049811217052896}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.25, y: 1, z: 0.25}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1, z: 0}
-  m_TimeToStationary: 0.5
