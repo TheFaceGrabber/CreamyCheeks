@@ -410,6 +410,7 @@ GameObject:
   - component: {fileID: 95909086911924970}
   - component: {fileID: 114830969241219216}
   - component: {fileID: 114182472766032956}
+  - component: {fileID: 208264186770389652}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -2711,7 +2712,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294965247
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -4064,6 +4065,21 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0027427673, y: 0.2611508, z: 0.121855885}
     m_Extent: {x: 0.07660966, y: 0.0762765, z: 0.049663097}
   m_DirtyAABB: 0
+--- !u!208 &208264186770389652
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1352432551984790}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.25, y: 1, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!222 &222161443675872992
 CanvasRenderer:
   m_ObjectHideFlags: 1

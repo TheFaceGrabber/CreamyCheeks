@@ -43,7 +43,7 @@ namespace CreamyCheaks.DialogSystem
             {
                 if (InputManager.GetButtonDown("Cancel Interaction"))
                 {
-                    End();
+                    StartCoroutine(End());
                 }
                 
                 var dir = curTalkingTo.transform.position - transform.position;
@@ -79,7 +79,7 @@ namespace CreamyCheaks.DialogSystem
                     }
                     else
                     {
-                        End();
+                        StartCoroutine(End());
                     }
                 }
             }
@@ -93,7 +93,7 @@ namespace CreamyCheaks.DialogSystem
                     }
                     else
                     {
-                        End();
+                        StartCoroutine(End());
                     }
                 }
             }
@@ -107,22 +107,23 @@ namespace CreamyCheaks.DialogSystem
                     }
                     else
                     {
-                        End();
+                        StartCoroutine(End());
                     }
                 }
             }
         }
 
-        void End()
+        IEnumerator End()
         {
-            StopAllCoroutines();
             curTalkingTo.EndTalk();
             curTalkingTo = null;
             IsDialogueRunning = false;
             curBranch = null;
             ReplyPanel.SetActive(false);
             SpeechPanel.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
             player.SetAllowInput(true);
+            StopAllCoroutines();
         }
 
         IEnumerator Run(Branch branch)
@@ -186,7 +187,7 @@ namespace CreamyCheaks.DialogSystem
             }
             else
             {
-                End();
+                StartCoroutine(End());
             }
         }
     }
