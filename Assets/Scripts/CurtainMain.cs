@@ -23,6 +23,7 @@ public class CurtainMain : MonoBehaviour {
         CurtainClosed.SetActive(!CurtainClosed.activeInHierarchy);
         CurtainOpenLeft.SetActive(!CurtainOpenLeft.activeInHierarchy);
         CurtainOpenRight.SetActive(!CurtainOpenRight.activeInHierarchy);
+        
 
     }
 }

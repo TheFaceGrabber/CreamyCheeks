@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Window : Interactable {
     public bool IsLeft;
+    public AudioClip WindowSfx;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,5 +20,6 @@ public class Window : Interactable {
        if (IsLeft) transform.Rotate(0, -90, 0);
        else transform.Rotate(0, 90, 0);
         IsLeft = !IsLeft;
+        Sfx.PlaySfx(WindowSfx, transform.position);
     }
 }
