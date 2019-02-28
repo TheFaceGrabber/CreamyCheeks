@@ -22,7 +22,7 @@ public class SfxPlayer : MonoBehaviour
     /// <param name="Sfx"></param>
     public void PlaySfx(AudioClip Sfx)
     {
-        for (int i = 0; i < SfxPlayers.Length; i++)
+        for (int i = 0; i < SfxPlayers.Length -1; i++)
         {
             if (!SfxPlayers[i].isPlaying)
             {
@@ -36,7 +36,7 @@ public class SfxPlayer : MonoBehaviour
 
     public void PlaySfx(AudioClip Sfx, Vector3 Pos)
     {
-        for (int i = 0; i < SfxPlayers.Length; i++)
+        for (int i = 0; i < SfxPlayers.Length -1; i++)
         {
             if (!SfxPlayers[i].isPlaying)
             {
@@ -47,7 +47,11 @@ public class SfxPlayer : MonoBehaviour
             }
         }
     }
-
+    public void PlayLightningSfx(AudioClip Sfx)
+    {
+        SfxPlayers[SfxPlayers.Length - 1].clip = Sfx;
+        SfxPlayers[SfxPlayers.Length - 1].Play();
+    }
     /// <summary>
     /// toggle Sfx on and off
     /// </summary>
