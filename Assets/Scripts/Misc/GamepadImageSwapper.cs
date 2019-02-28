@@ -17,6 +17,11 @@ public class GamepadImageSwapper : MonoBehaviour
     }
     // Update is called once per frame
     void Update () {
-        img.sprite = InputManager.GetLastInputType() == InputType.Gamepad ? GamepadImage : KeyboardImage;
+       // img.sprite = InputManager.GetLastInputType() == InputType.Gamepad ? GamepadImage : KeyboardImage;
+
+        //if (InputManager.GetButtonDown("left"))
+        //{
+        //    print("Left");
+        //}
 	}
 }

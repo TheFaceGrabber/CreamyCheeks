@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CreamyCheaks.Input;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -10,7 +11,10 @@ public class UIManager : MonoBehaviour {
     private Image Sanitybar;
     private Text HealthText;
     private Text SanityText;
+    public Sprite KeyboardImage;
+    public Sprite GamepadImage;
     private float barstartsize;
+    private Image InteractButton;
     private Text InteractTextOption;
     
 	// Use this for initialization
@@ -23,13 +27,15 @@ public class UIManager : MonoBehaviour {
         Sanitybar = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>();
         SanityText = transform.GetChild(0).GetChild(1).GetChild(1).GetComponent<Text>();
         barstartsize = Healthbar.transform.localScale.x;
-        
+        InteractButton = InteractText.transform.GetChild(2).GetComponent<Image>();
         HideInteractText();
       
 	}
     public void UpdateInteractText(string newtext)
     {
+        InteractButton.sprite = InputManager.GetLastInputType() == InputType.Gamepad ? GamepadImage : KeyboardImage;
         InteractTextOption.text = newtext;
+
     }
     // Update is called once per frame
     private void Update()
@@ -38,6 +44,8 @@ public class UIManager : MonoBehaviour {
         {
             StatsPanel.SetActive(!StatsPanel.activeInHierarchy);
         }
+
+
     }
 
     public void ShowInteractText()

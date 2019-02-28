@@ -10,14 +10,14 @@ public class InventoryManager : MonoBehaviour {
     private Text ItemDesc;
     private Item currentitem;
     private InventorySystem Inventory;
-   // private SfxPlayer Sfx;
+    private SfxPlayer Sfx;
     public AudioClip ItemInspectedSfx;
     public AudioClip PanelCloseSfx;
     public AudioClip ItemScrapSfx;
 
 	// Use this for initialization
 	void Start () {
-      //  Sfx = GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>();
+        Sfx = GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>();
         InfoPanel = transform.GetChild(1).gameObject;
         Inventory = transform.GetChild(0).gameObject.GetComponent<InventorySystem>();
         ItemImage = InfoPanel.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>();
@@ -38,7 +38,7 @@ public class InventoryManager : MonoBehaviour {
     {
         InfoPanel.SetActive(false);
         currentitem = null;
-       // Sfx.PlaySfx(PanelCloseSfx);
+        Sfx.PlaySfx(PanelCloseSfx);
     }
 
     void EnablePanel()
@@ -54,7 +54,7 @@ public class InventoryManager : MonoBehaviour {
         ItemImage.sprite = item.sprite;
         ItemName.text = item.ItemName;
         ItemDesc.text = item.ItemDescription;
-       // Sfx.PlaySfx(ItemInspectedSfx);
+        Sfx.PlaySfx(ItemInspectedSfx);
 
         
     }
