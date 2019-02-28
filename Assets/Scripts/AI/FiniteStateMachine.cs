@@ -22,6 +22,7 @@ namespace CreamyCheaks.AI
         public NavMeshAgent Agent { get; private set; }
         public Animator Animator { get; private set; }
 
+        public string StartRoom;
         public Room LastRoom;
         public Room CurrentRoom;
 
@@ -45,6 +46,8 @@ namespace CreamyCheaks.AI
         public void Start()
         {
             SetDestination(transform.position);
+            CurrentRoom = GameObject.Find("RoomManager").GetComponent<RoomHandler>().AllRooms
+                .SingleOrDefault(x => x.name == StartRoom);
         }
 
         public void Update()

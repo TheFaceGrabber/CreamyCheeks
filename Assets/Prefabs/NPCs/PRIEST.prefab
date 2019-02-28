@@ -105,7 +105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1070744668003882
 GameObject:
   m_ObjectHideFlags: 1
@@ -2172,6 +2172,7 @@ MonoBehaviour:
   CurrentState: {fileID: 11400000, guid: 3d2186f75c69e424590a0bf583c92ebb, type: 2}
   RotationSpeed: 5
   DistanceLeft: 0
+  StartRoom: FurnitureRoom
   LastRoom: {fileID: 0}
   CurrentRoom: {fileID: 0}
   CurrentPOI: {fileID: 0}

@@ -139,6 +139,7 @@ namespace CreamyCheaks.DialogSystem
                 int index = branch.Text.IndexOf(line);
                 if (branch.VoiceOver.ElementAtOrDefault(index) != null)
                 {
+                    GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>().PlaySfx(branch.VoiceOver[index],transform.position);
                     //TODO PLAY SOUND
                     //GameManager.Instance.SoundsManager.PlaySound(branch.VoiceOver[index]);
                 }

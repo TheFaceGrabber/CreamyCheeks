@@ -1304,6 +1304,7 @@ MonoBehaviour:
   CurrentState: {fileID: 11400000, guid: 3d2186f75c69e424590a0bf583c92ebb, type: 2}
   RotationSpeed: 5
   DistanceLeft: 0
+  StartRoom: Foyer
   LastRoom: {fileID: 0}
   CurrentRoom: {fileID: 0}
   CurrentPOI: {fileID: 0}
