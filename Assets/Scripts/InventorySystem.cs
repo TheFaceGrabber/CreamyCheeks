@@ -8,7 +8,7 @@ public class InventorySystem : MonoBehaviour {
     public Image[] ItemImages = new Image[numItemSlots];
     public Item[] items = new Item[numItemSlots];
     public Color MyDefaultColor;
-  //  private SfxPlayer Sfx;
+    private SfxPlayer Sfx;
     public AudioClip ItemRemovedSfx;
     public AudioClip ItemAddedSfx;
 
@@ -16,12 +16,13 @@ public class InventorySystem : MonoBehaviour {
 
     private void Start()
     {
-       // Sfx = GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>();
+        Sfx = GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>();
         IManager = transform.parent.gameObject.GetComponent<InventoryManager>();
         for (int i = 0; i < numItemSlots; i++)
         {
             ItemImages[i] = transform.GetChild(i).GetChild(0).GetComponent<Image>();
         }
+        
     }
 
     public bool AddItem(Item itemToAdd)
@@ -33,6 +34,20 @@ public class InventorySystem : MonoBehaviour {
                 items[i] = itemToAdd;
                 ItemImages[i].sprite = itemToAdd.sprite;
                 ItemImages[i].color = Color.white;
+                Sfx.PlaySfx(ItemAddedSfx);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool CheckForItem(Item ItemToCheck)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] == null) return false;
+            if (items[i].ItemName == ItemToCheck.ItemName)
+            {
                 return true;
             }
         }
@@ -48,6 +63,7 @@ public class InventorySystem : MonoBehaviour {
                 items[i] = null;
                 ItemImages[i].sprite = null;
                 ItemImages[i].color = MyDefaultColor;
+                Sfx.PlaySfx(ItemRemovedSfx);
                 return;
             }
         }

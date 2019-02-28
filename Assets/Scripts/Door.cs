@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : Interactable {
-    private GameObject DoorOne;
-    private GameObject DoorTwo;
-    private bool DoorOpen;
+    protected GameObject DoorOne;
+    protected GameObject DoorTwo;
+    protected bool DoorOpen;
     public AudioClip OpenSfx;
+    
 	// Use this for initialization
 	void Start () {
         DoorOne = transform.parent.transform.GetChild(0).gameObject;

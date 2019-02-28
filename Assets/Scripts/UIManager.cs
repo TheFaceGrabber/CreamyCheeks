@@ -11,10 +11,12 @@ public class UIManager : MonoBehaviour {
     private Text HealthText;
     private Text SanityText;
     private float barstartsize;
+    private Text InteractTextOption;
     
 	// Use this for initialization
 	void Start () {
         InteractText = transform.GetChild(3).gameObject;
+        InteractTextOption = InteractText.transform.GetChild(1).GetComponent<Text>();
         StatsPanel = transform.GetChild(1).gameObject;
         Healthbar = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
         HealthText = transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
@@ -25,7 +27,10 @@ public class UIManager : MonoBehaviour {
         HideInteractText();
       
 	}
-
+    public void UpdateInteractText(string newtext)
+    {
+        InteractTextOption.text = newtext;
+    }
     // Update is called once per frame
     private void Update()
     {

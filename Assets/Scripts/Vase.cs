@@ -8,6 +8,8 @@ public class Vase : MoveableObject {
     private Rigidbody myRigid;
     public GameObject Rubble;
     public AudioClip SmashSfx;
+    public bool HasLoot;
+    public GameObject Loot;
 	// Use this for initialization
 	void Start () {
         myRigid = GetComponent<Rigidbody>();
@@ -35,6 +37,7 @@ public class Vase : MoveableObject {
         Sfx.PlaySfx(SmashSfx, transform.position);
         GetComponent<ObjectBreakReactor>().OnBreak();
         print("Smash");
+        if (HasLoot) Instantiate (Loot, transform.position, transform.rotation);
         Instantiate(Rubble, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }

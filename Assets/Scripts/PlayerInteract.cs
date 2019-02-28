@@ -25,8 +25,10 @@ public class PlayerInteract : MonoBehaviour {
         {
             if (CurrentInteractObject == null || CurrentInteractObject != hit.transform.gameObject)
             {
+
                 UI.ShowInteractText();
                 CurrentInteractObject = hit.transform.gameObject;
+                UI.UpdateInteractText(CurrentInteractObject.GetComponent<Interactable>().InteractText);
             }
            
         }
@@ -59,6 +61,7 @@ public class PlayerInteract : MonoBehaviour {
         {
             CurrentInteractObject = item;
             UI.ShowInteractText();
+            UI.UpdateInteractText("to Throw");
         }
         else
         {
