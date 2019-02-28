@@ -87,13 +87,13 @@ namespace CreamyCheaks.AI
         public void RequestTalk()
         {
             DoesPlayerWantToInteract = true;
-            GetComponent<NavMeshObstacle>().enabled = false;
+          //  GetComponent<NavMeshObstacle>().enabled = false;
         }
 
         public void EndTalk()
         {
             DoesPlayerWantToInteract = false;
-            GetComponent<NavMeshObstacle>().enabled = true;
+            //GetComponent<NavMeshObstacle>().enabled = true;
         }
 
         public void ReactToBreak()
