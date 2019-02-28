@@ -8,6 +8,8 @@ public class MoveableObject : Interactable {
     public Vector3 rotationoffset;
     private GameObject PlayerCarryMarker;
     private PlayerInteract player;
+    public AudioClip PickUpSfx;
+    public AudioClip ThrowSfx;
 	// Use this for initialization
 	void Start () {
         SetMarker();
@@ -32,6 +34,7 @@ public class MoveableObject : Interactable {
 
     public override void PlayerInteract()
     {
+        Sfx.PlaySfx(PickUpSfx);
         BeingMoved = !BeingMoved;
         player.HoldingItem(this.gameObject);
         GetComponent<BoxCollider>().isTrigger = !GetComponent<BoxCollider>().isTrigger;

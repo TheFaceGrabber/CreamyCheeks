@@ -6,6 +6,8 @@ public class FridgeDoor : Interactable
 {
     public bool IsOpen;
     private bool hasBeenOpened;
+    public AudioClip OpenSfx;
+
 
     // Use this for initialization
     void Start()
@@ -21,6 +23,7 @@ public class FridgeDoor : Interactable
 
     public override void PlayerInteract()
     {
+        Sfx.PlaySfx(OpenSfx, transform.position);
         if (hasBeenOpened)
         {
             if (IsOpen) transform.Rotate(0, 0, 90, Space.Self);

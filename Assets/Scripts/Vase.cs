@@ -7,6 +7,7 @@ public class Vase : MoveableObject {
     public float SmashForceNeeded;
     private Rigidbody myRigid;
     public GameObject Rubble;
+    public AudioClip SmashSfx;
 	// Use this for initialization
 	void Start () {
         myRigid = GetComponent<Rigidbody>();
@@ -31,6 +32,7 @@ public class Vase : MoveableObject {
 
     private void Smash()
     {
+        Sfx.PlaySfx(SmashSfx, transform.position);
         GetComponent<ObjectBreakReactor>().OnBreak();
         print("Smash");
         Instantiate(Rubble, transform.position, transform.rotation);
