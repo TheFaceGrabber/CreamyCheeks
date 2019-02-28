@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using CreamyCheaks.Input;
 
-public class InventorySystem : MonoBehaviour {
+public class InventorySystem : MonoBehaviour
+{
     private InventoryManager IManager;
     public Image[] ItemImages = new Image[numItemSlots];
     public Item[] items = new Item[numItemSlots];
@@ -21,6 +24,8 @@ public class InventorySystem : MonoBehaviour {
     private Sprite BlankSprite;
 
     public const int numItemSlots = 10;
+
+    public event Action<Item> OnDeleteFromInventory;
 
     private void Start()
     {
@@ -183,6 +188,19 @@ public class InventorySystem : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public void RemoveSelectedItem()
+    {
+        if (items.ElementAtOrDefault(SelectedItem) == null)
+            return;
+
+        Item i = items[SelectedItem];
+
+        if(OnDeleteFromInventory != null)
+            OnDeleteFromInventory(i);
+
+        RemoveItem(i);
     }
 
     public void RemoveItem(Item itemToRemove)

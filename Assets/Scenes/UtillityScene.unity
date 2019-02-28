@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.00001750433, g: 0.00000002865813, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -570,7 +570,6 @@ MonoBehaviour:
   - {fileID: 1668995438}
   - {fileID: 738082865}
   - {fileID: 547870149}
-  - {fileID: 0}
   PlayerHasBeenUpstairs: 0
 --- !u!4 &554295428
 Transform:

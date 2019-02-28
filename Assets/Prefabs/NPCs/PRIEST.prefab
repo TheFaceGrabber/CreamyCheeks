@@ -2189,7 +2189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5ce3aecf73f62469718b3248ac93e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractText: 
+  InteractText: to talk.
   InitBranch: {fileID: 11400000, guid: 3b4f88956b8d1c546afb54e5331503be, type: 2}
 --- !u!136 &136367509962872458
 CapsuleCollider:

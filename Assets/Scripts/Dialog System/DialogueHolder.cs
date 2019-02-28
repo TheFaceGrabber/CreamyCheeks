@@ -45,10 +45,14 @@ namespace CreamyCheaks.DialogSystem
                 {
                     StartCoroutine(End());
                 }
-                
-                var dir = curTalkingTo.transform.position - transform.position;
 
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, Quaternion.LookRotation(dir).eulerAngles.y, transform.eulerAngles.z);
+                if (curTalkingTo)
+                {
+                    var dir = curTalkingTo.transform.position - transform.position;
+
+                    transform.eulerAngles = new Vector3(transform.eulerAngles.x,
+                        Quaternion.LookRotation(dir).eulerAngles.y, transform.eulerAngles.z);
+                }
             }
         }
         public void BeginDialogue(Branch branch, FiniteStateMachine ai)
@@ -115,8 +119,12 @@ namespace CreamyCheaks.DialogSystem
 
         IEnumerator End()
         {
-            curTalkingTo.EndTalk();
-            curTalkingTo = null;
+            if (curTalkingTo)
+            {
+                curTalkingTo.EndTalk();
+                curTalkingTo = null;
+            }
+
             IsDialogueRunning = false;
             curBranch = null;
             ReplyPanel.SetActive(false);
