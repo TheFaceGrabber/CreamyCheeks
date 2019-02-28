@@ -6,6 +6,7 @@ public class Door : Interactable {
     private GameObject DoorOne;
     private GameObject DoorTwo;
     private bool DoorOpen;
+    public AudioClip OpenSfx;
 	// Use this for initialization
 	void Start () {
         DoorOne = transform.parent.transform.GetChild(0).gameObject;
@@ -22,6 +23,7 @@ public class Door : Interactable {
         GetComponent<BoxCollider>().enabled = false;
         DoorOne.transform.Rotate(new Vector3(0, -90, 0));
         DoorTwo.transform.Rotate(new Vector3(0, 90, 0));
+        Sfx.PlaySfx(OpenSfx, transform.position);
     }
 
 

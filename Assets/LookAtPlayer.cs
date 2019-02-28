@@ -12,7 +12,7 @@ public class LookAtPlayer : MonoBehaviour {
         Vector3 screenPoint = Cam.WorldToViewportPoint(transform.position);
         if(!(screenPoint.z > 0 && screenPoint.x > -0.2 && screenPoint.x < 1.2 && screenPoint.y > -0.2 && screenPoint.y < 1.2))
         {
-            Debug.Log("not looking at statue");
+           // Debug.Log("not looking at statue");
             transform.LookAt(Cam.transform.position);
         }
 
