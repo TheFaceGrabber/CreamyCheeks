@@ -610,11 +610,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllRooms:
-  - {fileID: 1949217125}
+  - {fileID: 1932873959}
   - {fileID: 1374736822}
   - {fileID: 1065379963}
   - {fileID: 432281618}
-  - {fileID: 1932873959}
+  - {fileID: 1949217125}
   - {fileID: 1303682078}
   - {fileID: 2001209783}
   - {fileID: 1646555932}
@@ -2242,6 +2242,9 @@ MonoBehaviour:
   - {fileID: 1065379963}
   - {fileID: 432281618}
   - {fileID: 1303682078}
+  - {fileID: 2001209783}
+  - {fileID: 1646555932}
+  - {fileID: 1106775016}
   RoomPoints:
   - {fileID: 1338651358}
   - {fileID: 2123465667}

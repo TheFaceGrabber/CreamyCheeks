@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 114357233314952670}
   - component: {fileID: 195906311773153438}
   - component: {fileID: 114717120256172004}
+  - component: {fileID: 208867941223415616}
   m_Layer: 10
   m_Name: Loui
   m_TagString: Untagged
@@ -1304,6 +1305,7 @@ MonoBehaviour:
   CurrentState: {fileID: 11400000, guid: 3d2186f75c69e424590a0bf583c92ebb, type: 2}
   RotationSpeed: 5
   DistanceLeft: 0
+  StartRoom: Foyer
   LastRoom: {fileID: 0}
   CurrentRoom: {fileID: 0}
   CurrentPOI: {fileID: 0}
@@ -1850,3 +1852,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!208 &208867941223415616
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471361746587836}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.25, y: 1, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
