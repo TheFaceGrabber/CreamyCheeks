@@ -100,3 +100,4 @@ MonoBehaviour:
   ItemName: Flashlight
   ItemDescription: Shines some light on the subject
   Value: 1
+  WorldItem: {fileID: 1034876886614256}

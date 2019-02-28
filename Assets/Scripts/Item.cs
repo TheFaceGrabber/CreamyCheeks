@@ -8,6 +8,7 @@ public class Item : Interactable {
     public string ItemName;
     public string ItemDescription;
     public int Value;
+    public GameObject WorldItem;
     private InventorySystem Inventory;
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,11 @@ public class Item : Interactable {
     {
         Inventory = GameObject.Find("Inventory").GetComponent<InventorySystem>();
         return Inventory.AddItem(this);
+    }
+
+    public virtual void ItemUsed()
+    {
+
     }
 
 

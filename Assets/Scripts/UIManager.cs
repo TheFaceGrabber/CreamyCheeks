@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+
         InteractText = transform.GetChild(3).gameObject;
         InteractTextOption = InteractText.transform.GetChild(1).GetComponent<Text>();
         StatsPanel = transform.GetChild(1).gameObject;

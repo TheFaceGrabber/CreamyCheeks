@@ -356,7 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4699d34e6dd8ef4aaeebbbac19b6833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractText: 
   sprite: {fileID: 21300000, guid: a81b0b36ef9fa0c498e387f8663ae773, type: 3}
   ItemName: Dynamite
   ItemDescription: This goes Bang!
   Value: 1
+  WorldItem: {fileID: 1235756360226872}

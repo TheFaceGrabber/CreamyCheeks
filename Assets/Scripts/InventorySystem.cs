@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CreamyCheaks.Input;
 
 public class InventorySystem : MonoBehaviour {
     private InventoryManager IManager;
     public Image[] ItemImages = new Image[numItemSlots];
     public Item[] items = new Item[numItemSlots];
-    public Color MyDefaultColor;
+    private Color MyDefaultColor;
     private SfxPlayer Sfx;
     public AudioClip ItemRemovedSfx;
     public AudioClip ItemAddedSfx;
@@ -16,11 +17,16 @@ public class InventorySystem : MonoBehaviour {
     private bool SelectionUp;
     private Image LeftSelection;
     private Image RightSelection;
+    private GameObject Player;
+    private Sprite BlankSprite;
 
     public const int numItemSlots = 10;
 
     private void Start()
     {
+
+        LeftOption = true;
+        Player = GameObject.Find("homelessGuy");
         Sfx = GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>();
         IManager = transform.parent.gameObject.GetComponent<InventoryManager>();
         for (int i = 0; i < numItemSlots; i++)
@@ -29,6 +35,8 @@ public class InventorySystem : MonoBehaviour {
         }
         LeftSelection = transform.parent.GetChild(1).GetChild(1).GetComponent<Image>();
         RightSelection = transform.parent.GetChild(1).GetChild(2).GetComponent<Image>();
+        MyDefaultColor = ItemImages[0].color;
+        BlankSprite = ItemImages[0].sprite;
     }
 
     private void Update() //Need to add Controller input here
@@ -52,6 +60,26 @@ public class InventorySystem : MonoBehaviour {
         {
             SelectDown();
         }
+
+        if (InputManager.GetButtonDown("Interact"))
+        {
+            if (SelectionUp)
+            {
+                if (LeftOption)//item throw
+                {
+                    GameObject GO = Instantiate(items[SelectedItem].WorldItem, Player.transform.position, Player.transform.rotation);
+                    GO.SetActive(true);
+                    RemoveItem(items[SelectedItem]);
+                    SelectDown();
+                }
+                else //item throw
+                {
+                    items[SelectedItem].ItemUsed();
+                }
+            }
+        }
+
+
     }
 
     private void SelectLeft()
@@ -164,7 +192,7 @@ public class InventorySystem : MonoBehaviour {
             if (items[i] == itemToRemove)
             {
                 items[i] = null;
-                ItemImages[i].sprite = null;
+                ItemImages[i].sprite = BlankSprite;
                 ItemImages[i].color = MyDefaultColor;
                 Sfx.PlaySfx(ItemRemovedSfx);
                 return;

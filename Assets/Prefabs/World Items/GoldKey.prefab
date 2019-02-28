@@ -101,6 +101,7 @@ MonoBehaviour:
   ItemName: Gold Key
   ItemDescription: This key must be for something
   Value: 1
+  WorldItem: {fileID: 1873617240514428}
 --- !u!136 &136886227944670624
 CapsuleCollider:
   m_ObjectHideFlags: 1
