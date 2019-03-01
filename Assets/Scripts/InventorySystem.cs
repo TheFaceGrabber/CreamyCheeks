@@ -28,9 +28,13 @@ public class InventorySystem : MonoBehaviour
 
     public event Action<Item> OnDeleteFromInventory;
 
+    //This is for gamepad input! Look at how it's used
+    string lastInput;
+    bool canDoGamePadInput;
+
     private void Start()
     {
-
+        canDoGamePadInput = true;
         LeftOption = true;
         Player = GameObject.Find("homelessGuy");
         Sfx = GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>();
@@ -49,24 +53,37 @@ public class InventorySystem : MonoBehaviour
     {
         if (MenuOpen) return;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxis("DPad X") < 0)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetAxis("DPad X") < 0 && canDoGamePadInput))
         {
+            lastInput = "DPad X";
+            canDoGamePadInput = false;
             SelectLeft();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetAxis("DPad X") > 0)
+        if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetAxis("DPad X") > 0 && canDoGamePadInput))
         {
+            lastInput = "DPad X";
+            canDoGamePadInput = false;
             SelectRight();
         }
 
-        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetAxis("DPad Y") > 0)
+        if (Input.GetKeyUp(KeyCode.UpArrow) || (Input.GetAxis("DPad Y") > 0 && canDoGamePadInput))
         {
+            lastInput = "DPad Y";
+            canDoGamePadInput = false;
             SelectUp();
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("DPad Y") < 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetAxis("DPad Y") < 0 && canDoGamePadInput))
         {
+            lastInput = "DPad Y";
+            canDoGamePadInput = false;
             SelectDown();
+        }
+
+        if(!string.IsNullOrEmpty(lastInput) && Input.GetAxis(lastInput) == 0)
+        {
+            canDoGamePadInput = true;
         }
 
         if (InputManager.GetButtonDown("Interact"))
