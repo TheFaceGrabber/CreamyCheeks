@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using CreamyCheaks.PlayerController;
 
 public class MirrorRoom : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MirrorRoom : MonoBehaviour
     public void Begin()
     {
         hasMadeSacrifice = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().SetAllowInput(false);
         GameObject.Find("Inventory").GetComponent<InventorySystem>().OnDeleteFromInventory += OnOnDeleteFromInventory;
 
         StartCoroutine(Go());
@@ -31,6 +33,8 @@ public class MirrorRoom : MonoBehaviour
         GetComponent<PlayableDirector>().Play();
 
         yield return new WaitForSeconds(4f);
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().SetAllowInput(true);
 
         //TODO ADD MACHETTE
     }
