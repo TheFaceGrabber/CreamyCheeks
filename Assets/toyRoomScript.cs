@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class toyRoomScript : Interactable {
 
@@ -24,7 +25,7 @@ public class toyRoomScript : Interactable {
         {
             if (!played)
             {
-                GetComponent<TimelineController>().Play();
+                GetComponent<PlayableDirector>().Play();
                 played = true;
             }
         }

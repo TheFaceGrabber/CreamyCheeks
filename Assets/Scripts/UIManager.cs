@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour {
             StatsPanel.SetActive(!StatsPanel.activeInHierarchy);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button7))
         {
             ToggleMenu();
         }
