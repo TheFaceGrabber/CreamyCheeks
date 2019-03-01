@@ -27,9 +27,46 @@ public class UIManager : MonoBehaviour {
     private MusicPlayer Music;
     private int CurrentSelection;
     private InventorySystem inventory;
-    
-	// Use this for initialization
-	void Start () {
+    public Image Fader;
+
+
+    private void Awake()
+    {
+        Fader.gameObject.SetActive(true);
+        StartCoroutine(FadeIn());
+    }
+
+    IEnumerator FadeIn()
+    {
+        yield return new WaitForSeconds(1);
+        Color newcolor = Fader.color;
+        for (int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(0.05f);
+            newcolor.a -= 0.05f;
+            Fader.color = newcolor;
+        }
+
+        yield return new WaitForSeconds(0);
+        Fader.gameObject.SetActive(false);
+    }
+
+    IEnumerator FadeOut(int Nextscene)
+    {
+        Fader.gameObject.SetActive(true);
+        Color newcolor = Fader.color;
+        for (int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(0.05f);
+            newcolor.a += 0.05f;
+            Fader.color = newcolor;
+        }
+
+        yield return new WaitForSeconds(0);
+        SceneManager.LoadScene(Nextscene);
+    }
+    // Use this for initialization
+    void Start () {
         OptionsText = new Text[4];
         Menu = transform.GetChild(6).gameObject;
         InteractText = transform.GetChild(3).gameObject;
@@ -206,10 +243,10 @@ public class UIManager : MonoBehaviour {
                 ToggleSfx();
                 break;
             case (2): //load menu
-                SceneManager.LoadScene(0);
+                StartCoroutine(FadeOut(0));
                 break;
             case (3): //reload level
-                SceneManager.LoadScene(1);
+                StartCoroutine(FadeOut(1));
                 break;
         };
     }
