@@ -18,6 +18,7 @@ public class MirrorRoom : MonoBehaviour
 
     private void OnOnDeleteFromInventory(Item item)
     {
+        Destroy(item.gameObject);
         hasMadeSacrifice = true;
     }
 
@@ -28,5 +29,9 @@ public class MirrorRoom : MonoBehaviour
         yield return new WaitUntil(() => hasMadeSacrifice == true);
 
         GetComponent<PlayableDirector>().Play();
+
+        yield return new WaitForSeconds(4f);
+
+        //TODO ADD MACHETTE
     }
 }
