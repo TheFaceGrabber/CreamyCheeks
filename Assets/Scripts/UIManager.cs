@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour {
     private SfxPlayer Sfx;
     private MusicPlayer Music;
     private int CurrentSelection;
+    private InventorySystem inventory;
     
 	// Use this for initialization
 	void Start () {
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour {
         HideInteractText();
         MusicToggle = Menu.transform.GetChild(5).GetComponent<Image>();
         SfxToggle = Menu.transform.GetChild(6).GetComponent<Image>();
+        inventory = transform.GetChild(4).GetChild(0).GetComponent<InventorySystem>();
         for (int i = 0; i < 4; i++)
         {
             OptionsText[i] = Menu.transform.GetChild(i).GetComponent<Text>();
@@ -158,6 +160,7 @@ public class UIManager : MonoBehaviour {
     private void ToggleMenu()
     {
         Menu.SetActive(!Menu.activeInHierarchy);
+        inventory.MenuOpen = Menu.activeInHierarchy;
     }
 
 

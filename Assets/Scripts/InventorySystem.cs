@@ -23,7 +23,7 @@ public class InventorySystem : MonoBehaviour
     private GameObject Player;
     private Sprite BlankSprite;
     private float lastDPadVal = 0;
-
+    public bool MenuOpen;
     public const int numItemSlots = 10;
 
     public event Action<Item> OnDeleteFromInventory;
@@ -47,17 +47,18 @@ public class InventorySystem : MonoBehaviour
 
     private void Update() //Need to add Controller input here
     {
-        /*
-       if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (MenuOpen) return;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxis("DPad X") < 0)
         {
             SelectLeft();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetAxis("DPad X") > 0)
         {
             SelectRight();
         }
-       */
+
         if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetAxis("DPad Y") > 0)
         {
             SelectUp();
@@ -172,7 +173,7 @@ public class InventorySystem : MonoBehaviour
         {
             SelectionUp = !SelectionUp;
             IManager.HidePanel();
-            transform.GetChild(0).GetComponent<Selectable>().Select();
+          //  transform.GetChild(0).GetComponent<Selectable>().Select();
         }
     }
 
@@ -216,9 +217,7 @@ public class InventorySystem : MonoBehaviour
                 ItemImages[i].color = MyDefaultColor;
                 Sfx.PlaySfx(ItemRemovedSfx);
                 return;
-                //this removes the item -> GameObject.Find("Inventory").GetComponent<InventorySystem>().RemoveItem(<< EnterItemhere >>);
-                //if want to spawn in world can Instantiate (<<Item>>, player.transform.position)
-                //items can be found in assets/prefabs/world_items
+
             }
         }
     }
