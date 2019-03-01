@@ -16,10 +16,20 @@ public class UIManager : MonoBehaviour {
     private float barstartsize;
     private Image InteractButton;
     private Text InteractTextOption;
+    private GameObject Menu;
+    public Sprite ToggleOn;
+    public Sprite ToggleOff;
+    private Image MusicToggle;
+    private Image SfxToggle;
+    public Text[] OptionsText;
+    private SfxPlayer Sfx;
+    private MusicPlayer Music;
+    private int CurrentSelection;
     
 	// Use this for initialization
 	void Start () {
-
+        OptionsText = new Text[4];
+        Menu = transform.GetChild(6).gameObject;
         InteractText = transform.GetChild(3).gameObject;
         InteractTextOption = InteractText.transform.GetChild(1).GetComponent<Text>();
         StatsPanel = transform.GetChild(1).gameObject;
@@ -30,7 +40,15 @@ public class UIManager : MonoBehaviour {
         barstartsize = Healthbar.transform.localScale.x;
         InteractButton = InteractText.transform.GetChild(2).GetComponent<Image>();
         HideInteractText();
-      
+        MusicToggle = Menu.transform.GetChild(5).GetComponent<Image>();
+        SfxToggle = Menu.transform.GetChild(6).GetComponent<Image>();
+        for (int i = 0; i < 4; i++)
+        {
+            OptionsText[i] = Menu.transform.GetChild(i).GetComponent<Text>();
+        }
+        Menu.SetActive(false);
+        Music = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();
+        Sfx = GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>();
 	}
     public void UpdateInteractText(string newtext)
     {
@@ -45,6 +63,30 @@ public class UIManager : MonoBehaviour {
         {
             StatsPanel.SetActive(!StatsPanel.activeInHierarchy);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleMenu();
+        }
+
+        if (Menu.activeInHierarchy)
+        {
+            if (Input.GetKeyDown(KeyCode.F)) //to update to new input manager
+            {
+                SelectionMade();
+            }
+
+            if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                SelectUp();
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                SelectDown();
+            }
+        }
+
 
 
     }
@@ -110,6 +152,62 @@ public class UIManager : MonoBehaviour {
         Sanitybar.transform.localScale = new Vector2(((float)newsanity / 10) * barstartsize, transform.localScale.y);
         
     }
+
+
+
+    private void ToggleMenu()
+    {
+        Menu.SetActive(!Menu.activeInHierarchy);
+    }
+
+
+    private void ToggleMusic()
+    {
+        Music.ToggleMusic();
+        if (MusicToggle.sprite == ToggleOn) MusicToggle.sprite = ToggleOff;
+        else MusicToggle.sprite = ToggleOn;
+    }
+
+    private void ToggleSfx()
+    {
+        Sfx.ToggleSfx();
+        if (SfxToggle.sprite == ToggleOn) SfxToggle.sprite = ToggleOff;
+        else SfxToggle.sprite = ToggleOn;
+    }
+
+    private void SelectDown()
+    {
+        OptionsText[CurrentSelection].color = Color.black;
+        CurrentSelection++;
+        if (CurrentSelection > 3) CurrentSelection = 0;
+        OptionsText[CurrentSelection].color = Color.red;
+    }
+
+    private void SelectUp()
+    {
+        OptionsText[CurrentSelection].color = Color.black;
+        CurrentSelection--;
+        if (CurrentSelection < 0) CurrentSelection = 3;
+        OptionsText[CurrentSelection].color = Color.red;
+    }
+
+    private void SelectionMade()
+    {
+        switch (CurrentSelection)
+        {
+            case (0): //Toggle Music
+                ToggleMusic();
+                break;
+            case (1): //toggle Sfx
+                ToggleSfx();
+                break;
+            case (2): //load menu
+                break;
+            case (3): //reload level
+                break;
+        };
+    }
+
 
     
 }
