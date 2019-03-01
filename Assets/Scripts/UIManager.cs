@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CreamyCheaks.Input;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
     private GameObject InteractText;
@@ -205,8 +206,10 @@ public class UIManager : MonoBehaviour {
                 ToggleSfx();
                 break;
             case (2): //load menu
+                SceneManager.LoadScene(0);
                 break;
             case (3): //reload level
+                SceneManager.LoadScene(1);
                 break;
         };
     }
