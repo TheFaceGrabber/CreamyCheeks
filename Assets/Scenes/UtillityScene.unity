@@ -570,6 +570,7 @@ MonoBehaviour:
   - {fileID: 1668995438}
   - {fileID: 738082865}
   - {fileID: 547870149}
+  - {fileID: 727777380}
   PlayerHasBeenUpstairs: 0
 --- !u!4 &554295428
 Transform:
