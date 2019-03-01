@@ -12,7 +12,12 @@ public class MirrorRoom : MonoBehaviour
     private bool hasMadeSacrifice = false;
 
     public AudioClip screamSound;
+
+    public GameObject EndGameTrigger;
+
     public Transform screamLocation;
+
+    public Item Machete;
 
     public FiniteStateMachine[] Fsm;
     public Transform[] FsmLocations;
@@ -47,6 +52,10 @@ public class MirrorRoom : MonoBehaviour
 
         yield return new WaitForSeconds(3.5f);
 
+        GameObject.Find("Inventory").GetComponent<InventorySystem>().AddItem(Machete);
+
+        yield return new WaitForSeconds(0.5f);
+
         GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>().PlaySfx(screamSound, screamLocation.position);
 
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().SetAllowInput(true);
@@ -55,10 +64,18 @@ public class MirrorRoom : MonoBehaviour
         {
             Fsm[i].enabled = false;
             Fsm[i].GetComponent<NavMeshAgent>().enabled = false;
+            Fsm[i].Animator.SetBool("IsWalking", false);
             Fsm[i].transform.position = FsmLocations[i].transform.position;
             Fsm[i].transform.eulerAngles = FsmLocations[i].transform.eulerAngles;
         }
 
+        EndGameTrigger.SetActive(true);
+
         //TODO ADD MACHETTE
+    }
+
+    public void EndGame()
+    {
+        FindObjectOfType<UIManager>().EndGame();
     }
 }

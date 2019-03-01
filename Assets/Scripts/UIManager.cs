@@ -251,6 +251,11 @@ public class UIManager : MonoBehaviour {
         };
     }
 
+    public void EndGame()
+    {
+        StartCoroutine(FadeOut(0));
+    }
+
 
     
 }
