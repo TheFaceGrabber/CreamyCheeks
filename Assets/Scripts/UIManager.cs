@@ -79,12 +79,12 @@ public class UIManager : MonoBehaviour {
                 SelectionMade();
             }
 
-            if (Input.GetKeyUp(KeyCode.UpArrow))
+            if (Input.GetKeyUp(KeyCode.UpArrow) || (Input.GetAxis("DPad Y") > 0))
             {
                 SelectUp();
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetAxis("DPad Y") < 0))
             {
                 SelectDown();
             }

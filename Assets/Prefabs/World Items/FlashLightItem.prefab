@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33979329135657668}
   - component: {fileID: 23647561912217986}
   - component: {fileID: 114001696518734022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FlashLightItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

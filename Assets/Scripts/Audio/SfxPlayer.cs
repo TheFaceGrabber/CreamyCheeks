@@ -7,9 +7,11 @@ public class SfxPlayer : MonoBehaviour
     private GameObject Player;
     private bool IsMuted;
     private AudioSource[] SfxPlayers;
+    private int LoopId;
     // Start is called before the first frame update
     void Awake()
     {
+        LoopId = 99;
         Player = GameObject.Find("Player");
         SfxPlayers = transform.GetComponentsInChildren<AudioSource>();
     }
@@ -59,6 +61,31 @@ public class SfxPlayer : MonoBehaviour
     {
         IsMuted = !IsMuted;
         foreach (AudioSource sfx in SfxPlayers) sfx.mute = IsMuted;
+    }
+
+    public void PlayLoop(AudioClip Sfx, Vector3 Pos)
+    {
+        if (LoopId != 99) return;
+        for (int i = 0; i < SfxPlayers.Length - 1; i++)
+        {
+            if (!SfxPlayers[i].isPlaying)
+            {
+                SfxPlayers[i].gameObject.transform.position = Pos;
+                SfxPlayers[i].clip = Sfx;
+                SfxPlayers[i].loop = true;
+                SfxPlayers[i].Play();
+                LoopId = i;
+                return;
+            }
+        }
+    }
+
+    public void StopLoop()
+    {
+        if (LoopId == 99) return;
+        SfxPlayers[LoopId].loop = false;
+        SfxPlayers[LoopId].Stop();
+        LoopId = 99;
     }
 
 }
