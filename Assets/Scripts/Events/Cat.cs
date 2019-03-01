@@ -9,11 +9,11 @@ public class Cat : MonoBehaviour
 
     public void StartSound()
     {
-        GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>().PlaySfx(sound, Location.position);
+        GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>().PlayLoop(sound, Location.position);
     }
 
     public void StopSound()
     {
-
+        GameObject.Find("SfxPlayer").GetComponent<SfxPlayer>().StopLoop();
     }
 }

@@ -35,10 +35,6 @@ namespace CreamyCheaks.AI.RoomSystem
             if (roomManager.PlayerHasBeenUpstairs)
             {
                 tempList = PossibleNextRooms.Where(room => room.IsLocked == false).ToList();
-                for (int i = 0; i < tempList.Count; i++)
-                {
-                    Debug.Log(tempList[i].name);
-                }
             }
             else
                 tempList = PossibleNextRooms.Where(room => room.IsUpstairs == false && room.IsLocked == false).ToList();
