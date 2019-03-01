@@ -21,7 +21,9 @@ public class AIInteractor : Interactable
         if(fsm == null)
             fsm = GetComponent<FiniteStateMachine>();
 
-        fsm.RequestTalk();
+        if(fsm != null)
+            fsm.RequestTalk();
+
         GameObject.FindGameObjectWithTag("Player").GetComponent<DialogueHolder>().BeginDialogue(tempBranch != null ? tempBranch : InitBranch, fsm);
         tempBranch = null;
     }

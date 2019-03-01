@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using CreamyCheaks.Input;
 
-public class InventorySystem : MonoBehaviour {
+public class InventorySystem : MonoBehaviour
+{
     private InventoryManager IManager;
     public Image[] ItemImages = new Image[numItemSlots];
     public Item[] items = new Item[numItemSlots];
@@ -19,8 +22,11 @@ public class InventorySystem : MonoBehaviour {
     private Image RightSelection;
     private GameObject Player;
     private Sprite BlankSprite;
+    private float lastDPadVal = 0;
 
     public const int numItemSlots = 10;
+
+    public event Action<Item> OnDeleteFromInventory;
 
     private void Start()
     {
@@ -41,7 +47,8 @@ public class InventorySystem : MonoBehaviour {
 
     private void Update() //Need to add Controller input here
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        /*
+       if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             SelectLeft();
         }
@@ -50,13 +57,13 @@ public class InventorySystem : MonoBehaviour {
         {
             SelectRight();
         }
-
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+       */
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetAxis("DPad Y") > 0)
         {
             SelectUp();
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) )
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("DPad Y") < 0)
         {
             SelectDown();
         }
@@ -65,12 +72,17 @@ public class InventorySystem : MonoBehaviour {
         {
             if (SelectionUp)
             {
-                if (LeftOption)//item throw
+                if (LeftOption) //item throw
                 {
-                    GameObject GO = Instantiate(items[SelectedItem].WorldItem, Player.transform.position, Player.transform.rotation);
+                    GameObject GO = Instantiate(items[SelectedItem].WorldItem,
+                        Player.transform.position + Player.transform.forward * 1.5f, Player.transform.rotation);
                     GO.SetActive(true);
                     RemoveItem(items[SelectedItem]);
                     SelectDown();
+
+                    if (OnDeleteFromInventory != null)
+                        OnDeleteFromInventory(GO.GetComponent<Item>());
+
                 }
                 else //item throw
                 {
@@ -80,6 +92,13 @@ public class InventorySystem : MonoBehaviour {
         }
 
 
+    }
+
+    public void SetSelectedItem(int i)
+    {
+        SelectedItem = i;
+        if(SelectionUp && items[SelectedItem] != null)
+            IManager.UpdateInfo(items[SelectedItem]);
     }
 
     private void SelectLeft()
@@ -138,7 +157,7 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
-    private void SelectUp()
+    public void SelectUp()
     {
         if (!SelectionUp && (items[SelectedItem] != null))
         {
@@ -153,6 +172,7 @@ public class InventorySystem : MonoBehaviour {
         {
             SelectionUp = !SelectionUp;
             IManager.HidePanel();
+            transform.GetChild(0).GetComponent<Selectable>().Select();
         }
     }
 
@@ -208,8 +228,6 @@ public class InventorySystem : MonoBehaviour {
     {
         if (items[SlotNumber - 1] != null)
         {
-
-
             IManager.UpdateInfo(items[SlotNumber - 1]);
         }
     }
